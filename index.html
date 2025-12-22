@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>K. BEERENDRA | Senior Video Editor</title>
+    <title>Beerendra K | Senior Video Editor</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
+        darkMode: 'class',
         theme: {
           extend: {
             fontFamily: {
@@ -17,18 +18,19 @@
             colors: {
               brand: {
                 primary: '#00d4ff',   // Electric Blue
-                secondary: '#ff6b6b', // Soft Coral
-                accent: '#00ff88',    // Matrix Green
+                secondary: '#ff6b6b', // Coral CTA
+                accent: '#00ff88',    // Success Green
                 dark: '#0a0a0a',      // Pitch Black
-                card: '#161616',      // Dark Charcoal
-              },
-              zinc: {
-                950: '#050505',
+                card: '#1a1a1a',      // Charcoal Card
+                lightBg: '#fafafa',
+                lightText: '#1f2937',
               }
             },
-            letterSpacing: {
-              'tight-subtle': '-0.02em',
-              'wide-premium': '0.15em',
+            fontSize: {
+              'h1': ['48px', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+              'h2': ['32px', { lineHeight: '1.2', letterSpacing: '-0.01em' }],
+              'body': ['16px', { lineHeight: '1.6' }],
+              'small': ['14px', { lineHeight: '1.5' }],
             }
           }
         }
@@ -37,21 +39,15 @@
     <style>
       body {
         background-color: #0a0a0a;
-        color: #a1a1aa;
-        overflow-x: hidden;
+        color: #ffffff;
         -webkit-font-smoothing: antialiased;
       }
-      ::selection {
-        background: #00d4ff;
-        color: #000;
+      .cinematic-shadow {
+        box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.5);
       }
-      .cinematic-glow {
-        box-shadow: 0 0 60px -15px rgba(0, 212, 255, 0.15);
-      }
-      .glass-surface {
-        background: rgba(22, 22, 22, 0.7);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+      .glass {
+        background: rgba(26, 26, 26, 0.8);
+        backdrop-filter: blur(12px);
         border: 1px solid rgba(255, 255, 255, 0.05);
       }
       .grain {
@@ -61,38 +57,35 @@
         width: 100%;
         height: 100%;
         background-image: url('https://grainy-gradients.vercel.app/noise.svg');
-        opacity: 0.015;
+        opacity: 0.02;
         pointer-events: none;
         z-index: 999;
       }
       ::-webkit-scrollbar {
-        width: 4px;
+        width: 6px;
       }
       ::-webkit-scrollbar-track {
         background: #0a0a0a;
       }
       ::-webkit-scrollbar-thumb {
-        background: #1e1e1e;
-        border-radius: 2px;
-      }
-      .text-balance {
-        text-wrap: balance;
+        background: #333;
+        border-radius: 10px;
       }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "framer-motion": "https://esm.sh/framer-motion@^11.0.0",
-    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
-    "@google/genai": "https://esm.sh/@google/genai@^1.33.0"
-  }
-}
-</script>
-</head>
-  <body>
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@^19.2.3",
+        "react/": "https://esm.sh/react@^19.2.3/",
+        "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+        "framer-motion": "https://esm.sh/framer-motion@^11.0.0",
+        "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
+        "@google/genai": "https://esm.sh/@google/genai@^1.33.0"
+      }
+    }
+    </script>
+  </head>
+  <body class="font-sans">
     <div class="grain"></div>
     <div id="root"></div>
   </body>
