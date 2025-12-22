@@ -1,6 +1,6 @@
 import React from 'react';
 import { SKILLS } from '../constants';
-import { Video, Cpu, Activity } from 'lucide-react';
+import { Video, Cpu, Activity, LayoutGrid } from 'lucide-react';
 
 const Skills: React.FC = () => {
   const getIcon = (title: string) => {
@@ -10,23 +10,29 @@ const Skills: React.FC = () => {
   };
 
   return (
-    <section id="domain" className="py-32 bg-brand-dark px-6 lg:px-24 border-t border-zinc-900">
-      <div className="container mx-auto max-w-6xl">
-        <div className="mb-16">
-          <h2 className="text-h2 font-bold text-white mb-2">The Domain</h2>
-          <div className="w-12 h-1 bg-brand-accent"></div>
+    <section id="domain" className="py-40 bg-brand-dark px-6 lg:px-24">
+      <div className="container mx-auto max-w-7xl">
+        <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-12">
+          <div className="max-w-xl">
+             <div className="flex items-center gap-2 mb-4">
+              <LayoutGrid size={16} className="text-brand-accent" />
+              <span className="text-brand-accent font-mono text-[10px] tracking-widest uppercase">Toolchain & Domain</span>
+            </div>
+            <h2 className="text-h2 md:text-5xl font-bold text-white mb-6 uppercase tracking-tighter">Stack Mastery.</h2>
+            <div className="h-1 w-24 bg-brand-accent"></div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {SKILLS.map((category) => (
-            <div key={category.title} className="p-10 rounded-3xl bg-brand-card border border-zinc-800 hover:border-zinc-700 transition-all group">
-              <div className="mb-8">
+            <div key={category.title} className="glass-card p-12 rounded-[2.5rem] group hover:border-brand-primary/30 transition-all duration-500">
+              <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-10 group-hover:scale-110 group-hover:bg-brand-primary/10 transition-all duration-500">
                 {getIcon(category.title)}
               </div>
-              <h3 className="text-xl font-bold text-white mb-6 uppercase tracking-tight">{category.title}</h3>
-              <div className="flex flex-wrap gap-2">
+              <h3 className="text-xl font-bold text-white mb-8 uppercase tracking-widest">{category.title}</h3>
+              <div className="flex flex-wrap gap-3">
                 {category.skills.map(skill => (
-                  <span key={skill} className="px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-[11px] text-zinc-400 font-bold uppercase tracking-wide">
+                  <span key={skill} className="px-4 py-2 bg-brand-dark border border-white/5 text-[11px] font-bold text-zinc-400 uppercase tracking-widest rounded-xl hover:text-white hover:border-white/20 transition-all">
                     {skill}
                   </span>
                 ))}

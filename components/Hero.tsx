@@ -1,84 +1,78 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Play, ArrowRight, Video } from 'lucide-react';
+import { Play, ArrowRight, Zap } from 'lucide-react';
+import { PROFILE_IMAGE } from '../constants';
 
 const Hero: React.FC = () => {
   return (
-    <section id="home" className="relative min-h-screen flex flex-col justify-center px-6 lg:px-24 py-20 overflow-hidden bg-brand-dark">
-      {/* Background Ambience */}
-      <div className="absolute top-[20%] right-[-5%] w-[40vw] h-[40vh] bg-brand-primary/10 blur-[120px] rounded-full pointer-events-none"></div>
-      
-      <div className="container mx-auto max-w-6xl relative z-10">
-        <motion.div 
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex items-center gap-2 mb-6"
-        >
-          <div className="h-px w-8 bg-brand-primary"></div>
-          <span className="text-brand-primary font-mono text-small tracking-widest uppercase">
-            Available for worldwide projects
-          </span>
-        </motion.div>
+    <section id="home" className="relative min-h-[90vh] flex items-center pt-32 pb-20 px-6 lg:px-24">
+      <div className="container mx-auto max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+          
+          <div className="lg:col-span-8">
+            <motion.div 
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="flex items-center gap-3 mb-8"
+            >
+              <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></span>
+              <span className="font-mono text-[10px] tracking-[0.4em] uppercase text-zinc-500 font-bold">
+                Deploying Masterpieces since 2010
+              </span>
+            </motion.div>
 
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-h1 font-bold text-white mb-6"
-        >
-          Beerendra K. <br/>
-          <span className="text-zinc-500">Senior Video Editor.</span>
-        </motion.h1>
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="h1-clamp font-extrabold text-white tracking-tighter mb-10"
+            >
+              NARRATIVE<br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-white to-zinc-700">
+                ARCHITECT.
+              </span>
+            </motion.h1>
 
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-body text-zinc-400 max-w-xl mb-10 font-light"
-        >
-          14+ years of precision. Narrative-driven editing for <span className="text-white">OTT</span>, 
-          <span className="text-white"> Political Campaigns</span>, and <span className="text-brand-accent">Telugu/English Content</span>. 
-          Converted 500M+ views into impact.
-        </motion.p>
+            <motion.p 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-lg md:text-xl text-zinc-500 max-w-xl mb-12 font-light leading-relaxed text-balance"
+            >
+              Specializing in high-retention visual storytelling for <span className="text-white">OTT Platforms</span>, 
+              <span className="text-white"> Political Strategy</span>, and <span className="text-brand-accent">Global Brands</span>. 
+              14 years of precision editing with 500M+ global reach.
+            </motion.p>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex flex-wrap gap-4"
-        >
-          <button className="group px-8 py-4 bg-brand-secondary text-white rounded-full font-bold text-small flex items-center gap-3 hover:scale-105 transition-all cinematic-shadow">
-            View Showreel <Play size={18} fill="white" />
-          </button>
-          <button className="px-8 py-4 border border-zinc-800 text-white rounded-full font-medium text-small hover:bg-zinc-900 transition-all flex items-center gap-2">
-            Hire Me <ArrowRight size={18} />
-          </button>
-        </motion.div>
+            <div className="flex flex-wrap gap-4">
+              <button className="px-10 py-5 bg-brand-secondary text-white rounded-sm font-bold text-[11px] tracking-[0.2em] uppercase hover:bg-brand-secondary/90 transition-all flex items-center gap-3">
+                Watch Showreel <Play size={14} fill="white" />
+              </button>
+              <button className="px-10 py-5 bg-brand-card border border-white/5 text-white rounded-sm font-bold text-[11px] tracking-[0.2em] uppercase hover:bg-white/5 transition-all">
+                Project Inquiry
+              </button>
+            </div>
+          </div>
 
-        {/* Floating Quick Stats */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 border-t border-zinc-900 pt-12"
-        >
-          <div>
-            <p className="text-2xl font-bold text-white">14+</p>
-            <p className="text-small text-zinc-500 uppercase tracking-tighter">Years Exp</p>
+          <div className="lg:col-span-4 hidden lg:block">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1 }}
+              className="relative aspect-[4/5] bg-brand-card border border-white/10 rounded-2xl overflow-hidden p-3"
+            >
+              <img 
+                src={PROFILE_IMAGE} 
+                alt="Beerendra" 
+                className="w-full h-full object-cover grayscale brightness-75 hover:grayscale-0 hover:brightness-100 transition-all duration-700 rounded-xl"
+              />
+              <div className="absolute bottom-8 right-8 bg-brand-primary/10 backdrop-blur-md border border-brand-primary/20 px-4 py-2 rounded-full">
+                <span className="font-mono text-[9px] text-brand-primary uppercase tracking-widest">Live Status: Active</span>
+              </div>
+            </motion.div>
           </div>
-          <div>
-            <p className="text-2xl font-bold text-brand-primary">500M+</p>
-            <p className="text-small text-zinc-500 uppercase tracking-tighter">Views</p>
-          </div>
-          <div>
-            <p className="text-2xl font-bold text-brand-accent">₹24Cr</p>
-            <p className="text-small text-zinc-500 uppercase tracking-tighter">Raised</p>
-          </div>
-          <div>
-            <p className="text-2xl font-bold text-white">80+</p>
-            <p className="text-small text-zinc-500 uppercase tracking-tighter">OTT Titles</p>
-          </div>
-        </motion.div>
+
+        </div>
       </div>
     </section>
   );

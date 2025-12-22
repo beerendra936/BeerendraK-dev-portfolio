@@ -35,8 +35,10 @@ const ChatWidget: React.FC = () => {
     setIsTyping(true);
 
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
-      const model = 'gemini-2.5-flash';
+      // Corrected: Initializing GoogleGenAI with a named parameter and direct process.env.API_KEY access
+      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      // Updated to use the correct model name for basic text tasks
+      const model = 'gemini-3-flash-preview';
       const systemInstruction = `You are a futuristic, highly professional AI assistant for Beerendra Karukola, a Senior Video Editor.
       Use the following context: ${RESUME_SUMMARY}.
       
@@ -55,6 +57,7 @@ const ChatWidget: React.FC = () => {
       const aiMsg: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'model',
+        // Accessing the .text property directly instead of calling a method
         text: response.text || "System sync failed. Please contact Beerendra directly via WhatsApp."
       };
 

@@ -1,75 +1,75 @@
 import React from 'react';
-import { Layers, Cpu, Heart, PlayCircle, Globe, Zap } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Layers, Cpu, Heart, Globe, Zap, Scissors } from 'lucide-react';
 
 const Services: React.FC = () => {
+  const services = [
+    {
+      icon: <Layers className="text-brand-primary" />,
+      title: "OTT & Localization",
+      desc: "Subtitling and mastering for 80+ global titles. Ensuring cultural resonance and precision timing.",
+      size: "col-span-1 lg:col-span-8"
+    },
+    {
+      icon: <Cpu className="text-brand-accent" />,
+      title: "AI-Powered Post",
+      desc: "4K upscaling, neural audio cleaning, and automated transcription workflows.",
+      size: "col-span-1 lg:col-span-4"
+    },
+    {
+      icon: <Zap className="text-brand-secondary" />,
+      title: "Viral Retention",
+      desc: "Repurposing long-form archives into high-impact Reels and Shorts that drive millions of views.",
+      size: "col-span-1 lg:col-span-4"
+    },
+    {
+      icon: <Globe className="text-white" />,
+      title: "Political Campaigns",
+      desc: "End-to-end visual strategy for state-wide campaigns reaching 20M+ voters with viral content.",
+      size: "col-span-1 lg:col-span-8"
+    }
+  ];
+
   return (
-    <section className="py-40 bg-brand-dark relative border-t border-white/5 px-6 lg:px-24">
-      <div className="container mx-auto max-w-7xl relative z-10">
+    <section id="services" className="py-40 bg-brand-dark px-6 lg:px-24">
+      <div className="container mx-auto max-w-7xl">
         <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-12">
           <div className="max-w-2xl">
-            <span className="font-mono text-brand-primary text-[10px] tracking-[0.8em] uppercase block mb-6">Expertise Stack</span>
-            <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-none uppercase">
-              Production<br/><span className="text-zinc-800 transition-colors hover:text-zinc-700">Capabilities.</span>
+            <span className="font-mono text-brand-primary text-[10px] tracking-[1em] uppercase block mb-6">Capabilities Archive</span>
+            <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tighter leading-none">
+              PRODUCTION<br/><span className="text-zinc-800">PIPELINES.</span>
             </h2>
           </div>
-          <p className="text-zinc-500 font-sans text-sm leading-relaxed max-w-xs border-l border-brand-primary/20 pl-8 font-light italic">
+          <p className="text-zinc-500 font-sans text-lg leading-relaxed max-w-sm border-l border-brand-primary/30 pl-8 font-light italic">
             "We don't just cut frames; we architect the emotional frequency of your audience."
           </p>
         </div>
 
-        {/* Cinematic Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-[300px] gap-6">
-          
-          {/* Main Service: Scale */}
-          <div className="md:col-span-8 md:row-span-1 glass-surface p-12 flex flex-col justify-between group overflow-hidden relative">
-            <div className="absolute top-[-20%] right-[-10%] w-[40%] h-[100%] bg-brand-primary/5 blur-[60px] rounded-full group-hover:bg-brand-primary/10 transition-all"></div>
-            <Layers className="text-brand-primary group-hover:scale-110 transition-transform" size={28} />
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-2 uppercase tracking-tight">Mass Scaling Engine</h3>
-              <p className="text-zinc-500 text-sm max-w-md font-light leading-relaxed">
-                Architecting high-frequency content campaigns. Handling 100+ reels monthly with automated ingestion and multi-cam synchronization.
-              </p>
-            </div>
-          </div>
-
-          {/* Secondary: AI */}
-          <div className="md:col-span-4 md:row-span-1 glass-surface p-12 flex flex-col justify-between group">
-            <Cpu className="text-brand-accent group-hover:rotate-12 transition-transform" size={28} />
-            <div>
-               <h3 className="text-xl font-bold text-white mb-2 uppercase tracking-tight">Neural Post</h3>
-               <p className="text-zinc-500 text-sm font-light leading-relaxed">
-                 Leveraging AI tools for 4K upscaling, automated subtitling, and generative object removal.
-               </p>
-            </div>
-          </div>
-
-          {/* Third: Impact */}
-          <div className="md:col-span-4 md:row-span-1 glass-surface p-12 flex flex-col justify-between group border-brand-secondary/20">
-            <Heart className="text-brand-secondary" size={28} />
-            <div>
-              <h3 className="text-xl font-bold text-white mb-2 uppercase tracking-tight">Conversion Core</h3>
-              <p className="text-zinc-500 text-sm font-light leading-relaxed">
-                Fundraising and political storytelling designed for action. Drove ₹24Cr in verified impact donations.
-              </p>
-            </div>
-          </div>
-
-          {/* Fourth: Localization */}
-          <div className="md:col-span-8 md:row-span-1 glass-surface p-12 flex flex-col md:flex-row items-center justify-between group gap-12">
-            <div className="space-y-4">
-              <Globe className="text-white/20 group-hover:text-brand-primary transition-colors" size={28} />
-              <h3 className="text-2xl font-bold text-white uppercase tracking-tight">Global Localization</h3>
-              <p className="text-zinc-500 text-sm max-w-sm font-light leading-relaxed">
-                Seamless subtitling and mastering for 80+ OTT shows across multi-language production houses.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3 justify-center md:justify-end opacity-40 group-hover:opacity-100 transition-opacity">
-               {['TELUGU', 'HINDI', 'ENGLISH', 'TAMIL'].map(lang => (
-                 <span key={lang} className="px-4 py-2 border border-white/5 rounded-sm font-mono text-[9px] text-white bg-white/5">{lang}</span>
-               ))}
-            </div>
-          </div>
-
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          {services.map((service, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className={`${service.size} bento-card glass-morphism p-10 md:p-14 rounded-[3rem] group relative overflow-hidden`}
+            >
+              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-20 transition-opacity">
+                <Scissors size={120} />
+              </div>
+              
+              <div className="relative z-10 h-full flex flex-col justify-between">
+                <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-12 group-hover:scale-110 transition-transform duration-500">
+                  {service.icon}
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-4 uppercase tracking-widest">{service.title}</h3>
+                  <p className="text-zinc-400 text-lg font-light leading-relaxed max-w-md">{service.desc}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

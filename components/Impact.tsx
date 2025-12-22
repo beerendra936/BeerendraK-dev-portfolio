@@ -1,33 +1,32 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const Impact: React.FC = () => {
+  const stats = [
+    { val: '500M+', label: 'GLOBAL VIEWS', sub: 'Aggregated lifetime reach' },
+    { val: '₹24Cr', label: 'CAPITAL RAISED', sub: 'Impact-driven donations' },
+    { val: '14Y+', label: 'INDUSTRY ERA', sub: 'Senior level expertise' },
+    { val: '80+', label: 'OTT TITLES', sub: 'Localization & Subtitling' },
+  ];
+
   return (
-    <section className="py-32 bg-brand-dark px-6 lg:px-24">
-      <div className="container mx-auto max-w-6xl">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-px bg-zinc-900 border border-zinc-900 rounded-3xl overflow-hidden shadow-2xl">
-          
-          <div className="md:col-span-8 p-12 md:p-20 bg-brand-dark flex flex-col justify-center h-full">
-            <span className="text-brand-primary font-mono text-[10px] tracking-widest uppercase mb-8 block">Proven Retention</span>
-            <h2 className="text-h2 font-bold text-white mb-8 uppercase leading-tight">
-              Massive Scaling. <br/>
-              <span className="text-zinc-700">Measured Outcome.</span>
-            </h2>
-            <p className="text-body text-zinc-400 max-w-md font-light leading-relaxed">
-              We leverage world-class editing pipelines to convert raw attention into tangible impact, localization for millions, and capital generation for high-stakes projects.
-            </p>
-          </div>
-
-          <div className="md:col-span-4 grid grid-cols-1 gap-px bg-zinc-900">
-            <div className="bg-brand-dark p-12 flex flex-col justify-center items-center text-center">
-              <p className="text-4xl font-bold text-white mb-2">500M+</p>
-              <p className="text-small text-zinc-500 uppercase tracking-widest">Aggregate Reach</p>
-            </div>
-            <div className="bg-brand-dark p-12 flex flex-col justify-center items-center text-center">
-              <p className="text-4xl font-bold text-brand-accent mb-2">₹24Cr</p>
-              <p className="text-small text-zinc-500 uppercase tracking-widest">Capital Raised</p>
-            </div>
-          </div>
-
+    <section className="py-24 bg-brand-dark section-fade px-6 lg:px-24">
+      <div className="container mx-auto max-w-7xl">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 border border-white/5">
+          {stats.map((stat, i) => (
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="bg-brand-dark p-10 group"
+            >
+              <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest mb-2 group-hover:text-brand-primary transition-colors">{stat.label}</p>
+              <p className="text-4xl md:text-5xl font-black text-white mb-2 tracking-tighter">{stat.val}</p>
+              <p className="text-[10px] font-mono text-zinc-600 uppercase">{stat.sub}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

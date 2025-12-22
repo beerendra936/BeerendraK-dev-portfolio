@@ -1,16 +1,14 @@
 import React from 'react';
 import { CLIENTS } from '../constants';
-import { Hexagon } from 'lucide-react';
 
 const LogoMarquee: React.FC = () => {
   return (
-    <div className="py-8 bg-[#02040a] border-y border-slate-900 overflow-hidden relative z-20">
-      <div className="flex gap-12 animate-infinite-scroll whitespace-nowrap">
-        {/* Double the list to create seamless loop */}
+    <div className="py-20 bg-brand-dark border-y border-white/5 overflow-hidden relative z-20">
+      <div className="flex gap-24 animate-infinite-scroll whitespace-nowrap items-center">
         {[...CLIENTS, ...CLIENTS, ...CLIENTS].map((client, index) => (
-          <div key={index} className="flex items-center gap-3 opacity-40 hover:opacity-100 transition-opacity duration-300">
-            <Hexagon size={16} className="text-indigo-500 fill-indigo-500/20" />
-            <span className="font-display font-bold text-xl tracking-widest text-slate-300">{client}</span>
+          <div key={index} className="flex items-center gap-4 opacity-30 hover:opacity-100 transition-opacity duration-300">
+            <span className="font-mono text-2xl font-black tracking-[0.5em] text-white italic">{client}</span>
+            <span className="w-2 h-2 rounded-full bg-brand-primary"></span>
           </div>
         ))}
       </div>
