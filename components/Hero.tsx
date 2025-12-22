@@ -18,8 +18,8 @@ const Hero: React.FC = () => {
     }
   };
 
-  // Decoding Text Effect Logic
-  const roles = ["NARRATIVE ARCHITECT", "OTT SPECIALIST", "VIRAL ARCHITECT"];
+  // Decoding Text Effect Logic - Refined for "Expensive" tone
+  const roles = ["STRATEGIC CONTENT PARTNER", "RETENTION ENGINEER", "GLOBAL SCALE SPECIALIST"];
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -76,20 +76,20 @@ const Hero: React.FC = () => {
       <div className="absolute top-1/4 left-10 hidden xl:flex flex-col gap-4 animate-float-slow opacity-40">
          <div className="p-3 bg-slate-900/50 border border-slate-700/50 backdrop-blur-md rounded-lg flex items-center gap-3">
             <Cpu size={20} className="text-indigo-400" />
-            <span className="font-mono text-xs text-slate-300">AI_ENHANCED_WORKFLOW</span>
+            <span className="font-mono text-xs text-slate-300">PRECISION_STORYTELLING</span>
          </div>
       </div>
       <div className="absolute bottom-1/4 right-10 hidden xl:flex flex-col gap-4 animate-float-delayed opacity-40">
          <div className="p-3 bg-slate-900/50 border border-slate-700/50 backdrop-blur-md rounded-lg flex items-center gap-3">
             <Globe size={20} className="text-green-400" />
-            <span className="font-mono text-xs text-slate-300">GLOBAL_DELIVERY_NETWORK</span>
+            <span className="font-mono text-xs text-slate-300">AUTHORITY_CONVERSION_ENGINE</span>
          </div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col items-center justify-center max-w-5xl mx-auto text-center">
+        <div className="flex flex-col items-center justify-center max-w-6xl mx-auto text-center">
           
-          {/* Status Bar - FOMO Trigger */}
+          {/* Status Bar - Refined FOMO */}
           <div className="mb-8 animate-in fade-in slide-in-from-top-4 duration-1000 flex justify-center">
             <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-slate-900/80 border border-indigo-500/30 backdrop-blur-md shadow-[0_0_20px_rgba(79,70,229,0.15)] hover:border-indigo-400 transition-colors cursor-crosshair">
               <span className="relative flex h-2.5 w-2.5">
@@ -97,34 +97,37 @@ const Hero: React.FC = () => {
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
               </span>
               <span className="text-xs font-mono font-bold text-slate-200 tracking-widest uppercase">
-                Available for Q2 2024
+                CAPACITY LIMITED // Q2 2024
               </span>
               <div className="h-4 w-px bg-slate-700 mx-1"></div>
               <span className="text-[10px] font-mono text-indigo-400 flex items-center gap-1">
                 <Zap size={10} className="fill-indigo-400" />
-                HIGH_PRIORITY
+                ELITE_ACCESS
               </span>
             </div>
           </div>
 
-          {/* Main Typography - The Hook */}
+          {/* Main Typography - The Authority Hook */}
           <div className="relative mb-6 group">
-            <h1 className="font-display font-bold text-7xl md:text-8xl lg:text-9xl tracking-tighter text-white relative z-10 leading-[0.9]">
-              <span className="block text-transparent bg-clip-text bg-gradient-to-b from-slate-100 to-slate-400 drop-shadow-2xl">VISUAL</span>
+            <h1 className="font-display font-bold text-6xl md:text-8xl lg:text-9xl tracking-tighter text-white relative z-10 leading-[0.85] uppercase">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-b from-slate-100 to-slate-400 drop-shadow-2xl">CONVERTING</span>
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 animate-gradient-x bg-300%">
-                ALCHEMIST
+                ATTENTION
               </span>
+              <span className="block text-slate-100 text-4xl md:text-6xl lg:text-7xl mt-2 tracking-normal font-sans font-light italic opacity-90">into Authority.</span>
             </h1>
-            <div className="h-8 md:h-12 mt-4">
-              <span className="font-mono text-xl md:text-2xl text-indigo-400/80 tracking-widest uppercase border-r-4 border-indigo-500 pr-2 animate-pulse">
+            <div className="h-8 md:h-12 mt-6">
+              <span className="font-mono text-lg md:text-xl text-indigo-400/80 tracking-widest uppercase border-r-4 border-indigo-500 pr-2 animate-pulse">
                 {displayText}
               </span>
             </div>
           </div>
 
-          <p className="font-light text-slate-400 text-lg md:text-xl lg:text-2xl max-w-2xl mb-12 leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200 mx-auto">
-            I turn <span className="text-slate-200 font-medium decoration-indigo-500/50 underline underline-offset-4">raw noise</span> into <span className="text-slate-200 font-medium decoration-indigo-500/50 underline underline-offset-4">cultural movements</span>. 
-            Deployed for high-stakes <span className="text-indigo-400">Content Campaigns</span> & <span className="text-indigo-400">OTT Giants</span>.
+          <p className="font-light text-slate-400 text-lg md:text-xl lg:text-2xl max-w-3xl mb-12 leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200 mx-auto">
+            Strategic post-production for organizations that demand <span className="text-slate-200 font-medium border-b border-indigo-500/50">precision</span>, 
+            <span className="text-slate-200 font-medium border-b border-indigo-500/50"> scale</span>, and 
+            <span className="text-slate-200 font-medium border-b border-indigo-500/50"> cultural dominance</span>. 
+            Deployed by OTT giants and high-stakes campaigns globally.
           </p>
 
           {/* Buttons - The Action */}
@@ -134,39 +137,39 @@ const Hero: React.FC = () => {
               className="group relative px-10 py-5 bg-white text-black rounded-full font-bold text-lg tracking-wide overflow-hidden transition-all hover:scale-105 shadow-[0_0_50px_rgba(255,255,255,0.3)] hover:shadow-[0_0_80px_rgba(255,255,255,0.5)]"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-300 to-purple-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 mix-blend-multiply"></div>
-              <span className="relative z-10 flex items-center gap-3">
+              <span className="relative z-10 flex items-center gap-3 uppercase">
                 <Play size={20} className="fill-black" />
-                WATCH SHOWREEL
+                Executive Showreel
               </span>
             </button>
             
             <a 
               href="#contact"
-              className="group flex items-center gap-3 px-10 py-5 bg-slate-900/60 border border-slate-700/50 text-white rounded-full font-medium hover:bg-slate-800 hover:border-indigo-500 transition-all backdrop-blur-sm"
+              className="group flex items-center gap-3 px-10 py-5 bg-slate-900/60 border border-slate-700/50 text-white rounded-full font-medium hover:bg-slate-800 hover:border-indigo-500 transition-all backdrop-blur-sm uppercase tracking-wide"
             >
-              Start Project
+              Consultation
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform text-indigo-400" />
             </a>
           </div>
 
-          {/* Stats - The Authority (Trading Floor Style) */}
-          <div className="flex flex-wrap gap-8 md:gap-16 border-y border-white/5 py-8 animate-in fade-in duration-1000 delay-500 justify-center w-full bg-black/20 backdrop-blur-sm">
-              <div className="text-center">
-                 <p className="text-4xl md:text-5xl font-display font-bold text-white">14+</p>
-                 <p className="text-[10px] md:text-xs font-mono text-slate-500 uppercase tracking-wider mt-1 flex items-center justify-center gap-1">
-                   Years Exp <div className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
+          {/* Stats - Refined */}
+          <div className="flex flex-wrap gap-8 md:gap-16 border-y border-white/5 py-10 animate-in fade-in duration-1000 delay-500 justify-center w-full bg-black/20 backdrop-blur-sm">
+              <div className="text-center group">
+                 <p className="text-4xl md:text-5xl font-display font-bold text-white group-hover:text-indigo-400 transition-colors">14+</p>
+                 <p className="text-[10px] md:text-xs font-mono text-slate-500 uppercase tracking-widest mt-1 flex items-center justify-center gap-1">
+                   Years of Mastery <div className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
                  </p>
               </div>
-              <div className="text-center">
-                 <p className="text-4xl md:text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-b from-green-400 to-green-600">500M+</p>
-                 <p className="text-[10px] md:text-xs font-mono text-slate-500 uppercase tracking-wider mt-1 flex items-center justify-center gap-1">
-                   Lifetime Views <TrendingUpIcon />
+              <div className="text-center group">
+                 <p className="text-4xl md:text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-b from-green-400 to-green-600">₹24 Cr</p>
+                 <p className="text-[10px] md:text-xs font-mono text-slate-500 uppercase tracking-widest mt-1 flex items-center justify-center gap-1">
+                   Conversion Value <TrendingUpIcon />
                  </p>
               </div>
-              <div className="text-center">
-                 <p className="text-4xl md:text-5xl font-display font-bold text-white">14.5K+</p>
-                 <p className="text-[10px] md:text-xs font-mono text-slate-500 uppercase tracking-wider mt-1 flex items-center justify-center gap-1">
-                   Edits Shipped <div className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
+              <div className="text-center group">
+                 <p className="text-4xl md:text-5xl font-display font-bold text-white group-hover:text-purple-400 transition-colors">500M+</p>
+                 <p className="text-[10px] md:text-xs font-mono text-slate-500 uppercase tracking-widest mt-1 flex items-center justify-center gap-1">
+                   Global Impressions <div className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
                  </p>
               </div>
           </div>

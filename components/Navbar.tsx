@@ -27,11 +27,11 @@ const Navbar: React.FC = () => {
   }, []);
 
   const navItems = [
-    { id: 'home', icon: <User size={18} />, label: 'About' },
-    { id: 'portfolio', icon: <FolderOpen size={18} />, label: 'Work' },
+    { id: 'home', icon: <User size={18} />, label: 'Authority' },
+    { id: 'portfolio', icon: <FolderOpen size={18} />, label: 'Case Studies' },
     { id: 'experience', icon: <Film size={18} />, label: 'Timeline' },
-    { id: 'skills', icon: <Activity size={18} />, label: 'Skills' },
-    { id: 'contact', icon: <Mail size={18} />, label: 'Contact' },
+    { id: 'skills', icon: <Activity size={18} />, label: 'Systems' },
+    { id: 'contact', icon: <Mail size={18} />, label: 'Inquiry' },
   ];
 
   const scrollTo = (id: string) => {
@@ -48,15 +48,15 @@ const Navbar: React.FC = () => {
       <div className="fixed top-6 left-6 z-50 hidden md:flex items-center gap-4">
         <div className="flex flex-col mix-blend-difference">
           <span className="font-display font-bold text-xl tracking-tighter text-white">BEERENDRA.K</span>
-          <span className="text-[10px] font-mono text-indigo-400 tracking-widest">SENIOR VIDEO EDITOR</span>
+          <span className="text-[10px] font-mono text-indigo-400 tracking-widest font-bold">POST-PRODUCTION PARTNER</span>
         </div>
       </div>
 
       {/* REC Indicator - Top Right */}
       <div className="fixed top-6 right-6 z-50 flex items-center gap-2 mix-blend-difference">
         <div className="w-3 h-3 rounded-full bg-red-600 animate-pulse-fast shadow-[0_0_10px_rgba(239,68,68,0.6)]"></div>
-        <span className="font-mono text-xs text-white font-bold tracking-widest">REC</span>
-        <span className="font-mono text-xs text-slate-400 ml-2 hidden sm:inline">00:11:42:05</span>
+        <span className="font-mono text-xs text-white font-bold tracking-widest uppercase">Live Signal</span>
+        <span className="font-mono text-xs text-slate-400 ml-2 hidden sm:inline opacity-50">00:11:42:05</span>
       </div>
 
       {/* Floating Dock Navigation */}
