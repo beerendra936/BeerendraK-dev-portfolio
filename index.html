@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BEERENDRA.K | Visual Strategist</title>
+    <title>BEERENDRA.K | Creative Catalyst</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script>
@@ -18,8 +18,8 @@
               brand: {
                 primary: '#00d4ff', // Arctic Cyan
                 secondary: '#ffffff',
-                accent: '#00ffaa', // Matrix Green
-                dark: '#050505',
+                accent: '#00ffaa', 
+                dark: '#020202', // Studio Onyx
                 panel: '#0a0a0a',
                 border: 'rgba(255, 255, 255, 0.05)',
               }
@@ -30,7 +30,7 @@
     </script>
     <style>
       body {
-        background-color: #050505;
+        background-color: #020202;
         color: #f8fafc;
         -webkit-font-smoothing: antialiased;
         overflow-x: hidden;
@@ -40,7 +40,7 @@
         position: fixed;
         top: 0; left: 0; width: 100%; height: 100%;
         background-image: url('https://grainy-gradients.vercel.app/noise.svg');
-        opacity: 0.02;
+        opacity: 0.03;
         pointer-events: none;
         z-index: 1000;
       }
@@ -49,7 +49,7 @@
         position: fixed;
         width: 32px;
         height: 32px;
-        border: 1px solid rgba(0, 212, 255, 0.3);
+        border: 1px solid rgba(0, 212, 255, 0.4);
         border-radius: 50%;
         pointer-events: none;
         z-index: 9999;
@@ -57,29 +57,28 @@
       }
 
       .technical-grid {
-        background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                          linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-        background-size: 50px 50px;
+        background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 40px 40px;
       }
 
       .safe-zone {
         position: fixed;
         inset: 40px;
-        border: 1px solid rgba(255, 255, 255, 0.01);
+        border: 1px solid rgba(255, 255, 255, 0.015);
         pointer-events: none;
         z-index: 100;
       }
 
-      .corner-l { position: absolute; width: 12px; height: 12px; border-color: rgba(255, 255, 255, 0.1); }
+      .corner-l { position: absolute; width: 14px; height: 14px; border-color: rgba(0, 212, 255, 0.2); }
       
       ::-webkit-scrollbar { width: 4px; }
-      ::-webkit-scrollbar-track { background: #050505; }
-      ::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 0; }
+      ::-webkit-scrollbar-track { background: #020202; }
+      ::-webkit-scrollbar-thumb { background: #1a1a1a; }
       
-      .text-glow { text-shadow: 0 0 30px rgba(0, 212, 255, 0.4); }
-      .studio-glass {
-        background: rgba(10, 10, 10, 0.8);
-        backdrop-filter: blur(20px);
+      .text-glow { text-shadow: 0 0 40px rgba(0, 212, 255, 0.5); }
+      .glass-studio {
+        background: rgba(10, 10, 10, 0.7);
+        backdrop-filter: blur(30px);
         border: 1px solid rgba(255, 255, 255, 0.05);
       }
     </style>
@@ -105,8 +104,9 @@
       <div class="corner-l top-0 right-0 border-t border-r"></div>
       <div class="corner-l bottom-0 left-0 border-b border-l"></div>
       <div class="corner-l bottom-0 right-0 border-b border-r"></div>
-      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 font-mono text-[8px] text-zinc-700 tracking-[1em] uppercase">
-        Signal: Locked // 24.00 fps
+      <div class="absolute bottom-6 right-8 font-mono text-[9px] text-zinc-800 uppercase tracking-widest flex items-center gap-2">
+        <span class="w-1.5 h-1.5 bg-red-600 rounded-full animate-pulse"></span>
+        LIVE_PREVIEW // 00:00:00:00
       </div>
     </div>
 

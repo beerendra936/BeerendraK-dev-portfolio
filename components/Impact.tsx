@@ -4,10 +4,10 @@ import { Activity, TrendingUp, Users, Target, Globe, ArrowUpRight } from 'lucide
 
 const Impact: React.FC = () => {
   const analytics = [
-    { icon: <Users size={16} />, val: '500M+', label: 'CAREER_IMPRESSIONS', trend: '+18% Peak', color: 'text-brand-primary' },
-    { icon: <TrendingUp size={16} />, val: '₹24Cr', label: 'DONATION_YIELD', trend: 'Verified', color: 'text-brand-accent' },
-    { icon: <Globe size={16} />, val: '80+', label: 'OTT_DELIVERABLES', trend: 'Global', color: 'text-white' },
-    { icon: <Activity size={16} />, val: '14.5K', label: 'TOTAL_FILE_EXPORTS', trend: 'Steady', color: 'text-zinc-500' },
+    { icon: <Users size={16} />, val: '500M+', label: 'AUDIENCE_REACH', trend: '+18%', color: 'text-brand-primary' },
+    { icon: <TrendingUp size={16} />, val: '₹24Cr', label: 'CAMPAIGN_YIELD', trend: 'STABLE', color: 'text-brand-accent' },
+    { icon: <Globe size={16} />, val: '80+', label: 'GLOBAL_RELEASES', trend: 'ACTIVE', color: 'text-white' },
+    { icon: <Activity size={16} />, val: '14.5K', label: 'MASTER_EXPORTS', trend: 'PEAK', color: 'text-zinc-500' },
   ];
 
   return (
@@ -15,12 +15,12 @@ const Impact: React.FC = () => {
       <div className="container mx-auto max-w-7xl">
         <div className="mb-24 flex flex-col md:flex-row justify-between items-end border-b border-white/5 pb-12">
           <div className="max-w-xl">
-            <span className="font-mono text-zinc-600 text-[10px] tracking-[1em] uppercase block mb-6">Strategic Intelligence Hub</span>
-            <h2 className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter leading-none">THE IMPACT <span className="text-zinc-800">METRICS.</span></h2>
+            <span className="font-mono text-zinc-600 text-[10px] tracking-[1em] uppercase block mb-6">Creative Analytics Hub</span>
+            <h2 className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter leading-none">THE IMPACT <span className="text-zinc-800">DATA.</span></h2>
           </div>
-          <div className="font-mono text-[9px] text-zinc-700 uppercase tracking-widest hidden md:block text-right">
-            Live Database Sync: Active<br/>
-            Ref: General Elections 2024
+          <div className="font-mono text-[9px] text-zinc-800 uppercase tracking-widest hidden md:block text-right">
+            CONTINUOUS_RECOVERY_MODE<br/>
+            SENSORS: OPTIMIZED
           </div>
         </div>
 
@@ -28,14 +28,14 @@ const Impact: React.FC = () => {
           {analytics.map((item, i) => (
             <motion.div 
               key={i}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               className="p-16 bg-brand-dark group hover:bg-zinc-900/40 transition-all relative overflow-hidden"
             >
               <div className="flex justify-between items-start mb-16">
-                <div className={`p-4 bg-zinc-950 border border-white/5 ${item.color} group-hover:border-brand-primary transition-all`}>
+                <div className={`p-5 bg-zinc-950 border border-white/5 ${item.color} group-hover:border-brand-primary transition-all`}>
                   {item.icon}
                 </div>
                 <span className="font-mono text-[9px] text-zinc-600 group-hover:text-brand-primary transition-colors flex items-center gap-1">
@@ -50,9 +50,9 @@ const Impact: React.FC = () => {
 
               {/* Data Visualization Decor */}
               <div className="absolute bottom-0 left-0 w-full h-1 flex gap-1 opacity-10">
-                 {Array.from({length: 15}).map((_, idx) => (
+                 {Array.from({length: 12}).map((_, idx) => (
                     <div key={idx} className={`flex-1 h-full bg-zinc-800 transition-all duration-700 group-hover:bg-brand-primary`} 
-                         style={{ transitionDelay: `${idx * 30}ms` }}></div>
+                         style={{ transitionDelay: `${idx * 40}ms` }}></div>
                  ))}
               </div>
             </motion.div>
