@@ -1,55 +1,64 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { EXPERIENCES } from '../constants';
+import { Clock, Scissors } from 'lucide-react';
 
 const Experience: React.FC = () => {
   return (
-    <section id="history" className="py-32 section-fade bg-brand-dark px-6 lg:px-24">
+    <section id="history" className="py-24 md:py-40 bg-brand-dark px-6 lg:px-24 border-t border-white/5 relative">
       <div className="container mx-auto max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
-          
-          <div className="lg:col-span-4">
-            <span className="font-mono text-brand-secondary text-[10px] tracking-[1em] uppercase block mb-6">History Log</span>
-            <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tighter leading-none mb-10">
-              CAREER<br/><span className="text-zinc-800">PATH.</span>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12 mb-20 md:mb-32">
+          <div className="max-w-2xl">
+            <span className="font-mono text-brand-primary text-[10px] tracking-[1.2em] uppercase block mb-8">Service Trajectory Log</span>
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-[1]">
+              STRATEGIC<br/><span className="text-zinc-800">HISTORY.</span>
             </h2>
-            <div className="p-10 bg-brand-card border border-white/5 rounded-2xl hidden lg:block">
-              <p className="text-zinc-500 font-light text-sm italic leading-relaxed">
-                "Evolution is measured in frames. From 24/7 news to state-wide strategic narratives."
-              </p>
-            </div>
           </div>
+          <div className="flex items-center gap-6 md:gap-8 studio-glass px-6 md:px-10 py-4 md:py-6">
+             <Clock className="text-brand-accent" size={24} />
+             <div className="font-mono text-[10px] md:text-[11px] uppercase tracking-widest">
+                <span className="text-zinc-600 block mb-1">Total Command</span>
+                <span className="text-white font-bold">14+ Years Active</span>
+             </div>
+          </div>
+        </div>
 
-          <div className="lg:col-span-8 space-y-12">
-            {EXPERIENCES.map((exp, idx) => (
-              <motion.div 
-                key={exp.id} 
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="group border-b border-white/5 pb-12 last:border-0"
-              >
-                <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
-                  <div className="space-y-2">
-                    <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest">{exp.period}</span>
-                    <h3 className="text-3xl font-bold text-white group-hover:text-brand-secondary transition-colors">{exp.role}</h3>
-                    <p className="text-brand-secondary font-mono text-[11px] font-bold uppercase tracking-[0.2em]">{exp.company}</p>
+        <div className="space-y-4 md:space-y-6">
+          {EXPERIENCES.map((exp, idx) => (
+            <motion.div 
+              key={exp.id} 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="group flex flex-col md:flex-row gap-6 md:gap-8 items-stretch"
+            >
+              <div className="md:w-56 flex flex-col justify-center border-b md:border-b-0 md:border-r border-white/5 py-6 md:py-10">
+                <span className="font-mono text-[11px] md:text-[12px] text-zinc-600 group-hover:text-brand-primary transition-colors tracking-widest">{exp.period}</span>
+              </div>
+
+              <div className="flex-1 studio-glass p-8 md:p-20 border-white/5 group-hover:border-brand-primary/30 transition-all flex flex-col lg:flex-row justify-between gap-12 lg:gap-16">
+                <div className="max-w-2xl">
+                  <div className="flex items-center gap-4 mb-6 md:mb-8">
+                    <Scissors size={18} className="text-brand-primary" />
+                    <span className="text-brand-primary font-mono text-[10px] md:text-[11px] uppercase tracking-[0.6em] font-bold">{exp.company}</span>
                   </div>
-                  
-                  <ul className="md:w-3/5 space-y-3">
+                  <h3 className="text-2xl md:text-4xl font-bold text-white mb-6 md:mb-10 uppercase tracking-tight leading-tight">{exp.role}</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
                     {exp.description.map((item, i) => (
-                      <li key={i} className="text-zinc-500 text-sm font-light flex gap-3 leading-relaxed group-hover:text-zinc-400 transition-colors">
-                        <span className="text-brand-secondary/40">•</span>
+                      <p key={i} className="text-zinc-500 text-base md:text-lg font-light leading-relaxed flex gap-4">
+                        <span className="text-brand-primary/40">•</span>
                         {item}
-                      </li>
+                      </p>
                     ))}
-                  </ul>
+                  </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
 
+                <div className="flex items-end justify-end opacity-20 lg:opacity-100">
+                  <span className="text-7xl md:text-[10rem] font-black text-white/[0.015] leading-none select-none group-hover:text-white/[0.04] transition-colors italic">0{idx + 1}</span>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

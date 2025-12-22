@@ -6,6 +6,7 @@ import Impact from './components/Impact';
 import Portfolio from './components/Portfolio';
 import BeforeAfter from './components/BeforeAfter';
 import Services from './components/Services';
+import Process from './components/Process';
 import Experience from './components/Experience';
 import Skills from './components/Skills';
 import Testimonials from './components/Testimonials';
@@ -19,13 +20,20 @@ const App: React.FC = () => {
       <main className="relative z-10">
         <Hero />
         <LogoMarquee />
-        <Impact />
+        <div className="section-gap">
+          <Impact />
+        </div>
         <Portfolio />
-        <BeforeAfter />
+        <Process />
+        <div className="section-gap">
+          <BeforeAfter />
+        </div>
         <Services />
         <Experience />
         <Skills />
-        <Testimonials />
+        <div className="section-gap">
+          <Testimonials />
+        </div>
       </main>
       <Footer />
       <ChatWidget />

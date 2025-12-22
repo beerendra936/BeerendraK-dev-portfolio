@@ -1,78 +1,93 @@
 import React from 'react';
 import { CONTACT_INFO } from '../constants';
-import { Mail, Youtube, Linkedin, MessageSquare, ArrowRight } from 'lucide-react';
+import { Mail, Youtube, Linkedin, MessageSquare, ArrowRight, MapPin } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
-    <footer id="contact" className="py-32 bg-brand-dark px-6 lg:px-24 border-t border-zinc-900">
-      <div className="container mx-auto max-w-6xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-          <div>
-            <h2 className="text-h2 font-bold text-white mb-6 uppercase">Let's build a <br/><span className="text-brand-primary">Narrative.</span></h2>
-            <p className="text-body text-zinc-400 mb-10 max-w-md font-light">
-              Available for freelance collaborations, OTT post-production, and viral content strategy.
-            </p>
+    <footer id="contact" className="py-24 md:py-40 bg-brand-dark px-6 lg:px-24 border-t border-zinc-900 relative overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute bottom-0 right-0 w-[60vw] h-[60vh] bg-brand-primary/5 blur-[150px] rounded-full pointer-events-none"></div>
+
+      <div className="container mx-auto max-w-7xl relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24">
+          
+          <div className="lg:col-span-7">
+            <span className="font-mono text-brand-primary text-[10px] tracking-[1.5em] uppercase block mb-10">Communications Array</span>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-14 uppercase tracking-tighter leading-[1.1]">
+              LET'S START A<br/><span className="text-brand-primary text-glow">CONVERSATION.</span>
+            </h2>
             
-            <div className="space-y-6">
-              <a href={`mailto:${CONTACT_INFO.email}`} className="flex items-center gap-4 text-white hover:text-brand-primary transition-colors group">
-                <div className="w-12 h-12 rounded-full border border-zinc-800 flex items-center justify-center group-hover:border-brand-primary transition-colors">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 mb-20">
+              <a href={`mailto:${CONTACT_INFO.email}`} className="group block">
+                <p className="font-mono text-[10px] text-zinc-700 uppercase tracking-[0.5em] mb-4 md:mb-6">Secure Email</p>
+                <div className="flex items-center gap-4 md:gap-6 text-white group-hover:text-brand-primary transition-all">
                   <Mail size={20} />
+                  <span className="text-xl md:text-3xl font-bold tracking-tight break-all">{CONTACT_INFO.email}</span>
                 </div>
-                <span className="text-body font-medium">{CONTACT_INFO.email}</span>
               </a>
-              <a href="https://wa.me/919705552787" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-white hover:text-brand-accent transition-colors group">
-                <div className="w-12 h-12 rounded-full border border-zinc-800 flex items-center justify-center group-hover:border-brand-accent transition-colors">
+              
+              <a href="https://wa.me/919705552787" target="_blank" rel="noopener noreferrer" className="group block">
+                <p className="font-mono text-[10px] text-zinc-700 uppercase tracking-[0.5em] mb-4 md:mb-6">Direct Signal (WA)</p>
+                <div className="flex items-center gap-4 md:gap-6 text-white group-hover:text-brand-accent transition-all">
                   <MessageSquare size={20} />
+                  <span className="text-xl md:text-3xl font-bold tracking-tight">+91 9705552787</span>
                 </div>
-                <span className="text-body font-medium">+91 9705552787 (WhatsApp)</span>
               </a>
             </div>
 
-            <div className="flex gap-4 mt-12">
-              <a href={CONTACT_INFO.linkedin} className="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center hover:bg-brand-primary transition-colors">
+            <div className="flex gap-6 md:gap-8">
+              <a href={CONTACT_INFO.linkedin} className="w-14 h-14 md:w-16 md:h-16 rounded-none studio-glass flex items-center justify-center hover:bg-brand-primary hover:text-black transition-all">
                 <Linkedin size={20} />
               </a>
-              <a href={CONTACT_INFO.youtube} className="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center hover:bg-brand-secondary transition-colors">
+              <a href={CONTACT_INFO.youtube} className="w-14 h-14 md:w-16 md:h-16 rounded-none studio-glass flex items-center justify-center hover:bg-red-600 hover:text-white transition-all">
                 <Youtube size={20} />
               </a>
             </div>
           </div>
 
-          <div className="bg-brand-card p-10 rounded-3xl border border-zinc-800">
-            <h3 className="text-xl font-bold text-white mb-8">Send a Quick Inquiry</h3>
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-              <div>
-                <input 
-                  type="text" 
-                  placeholder="Your Name" 
-                  className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-5 py-4 text-white text-small focus:border-brand-primary outline-none transition-all"
-                />
-              </div>
-              <div>
-                <input 
-                  type="email" 
-                  placeholder="Email Address" 
-                  className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-5 py-4 text-white text-small focus:border-brand-primary outline-none transition-all"
-                />
-              </div>
-              <div>
-                <textarea 
-                  rows={4} 
-                  placeholder="Project Details" 
-                  className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-5 py-4 text-white text-small focus:border-brand-primary outline-none transition-all resize-none"
-                ></textarea>
-              </div>
-              <button className="w-full py-4 bg-brand-secondary text-white rounded-xl font-bold text-small flex items-center justify-center gap-2 hover:bg-brand-secondary/90 transition-all">
-                Send Proposal <ArrowRight size={18} />
-              </button>
-            </form>
+          <div className="lg:col-span-5">
+            <div className="studio-glass p-8 md:p-12 lg:p-20 border border-white/5">
+              <h3 className="text-xl md:text-2xl font-black text-white mb-8 md:mb-12 uppercase tracking-[0.4em]">Inquiry Protocol</h3>
+              <form className="space-y-6 md:space-y-8" onSubmit={(e) => e.preventDefault()}>
+                <div className="space-y-3 md:space-y-4">
+                  <label className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest ml-1">ID / Organization</label>
+                  <input 
+                    type="text" 
+                    placeholder="NAME / BRAND" 
+                    className="w-full bg-zinc-950 border border-white/5 px-6 md:px-8 py-4 md:py-6 text-white text-sm focus:border-brand-primary outline-none transition-all placeholder:text-zinc-800"
+                  />
+                </div>
+                <div className="space-y-3 md:space-y-4">
+                  <label className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest ml-1">Transmission Channel</label>
+                  <input 
+                    type="email" 
+                    placeholder="EMAIL_ADRESS" 
+                    className="w-full bg-zinc-950 border border-white/5 px-6 md:px-8 py-4 md:py-6 text-white text-sm focus:border-brand-primary outline-none transition-all placeholder:text-zinc-800"
+                  />
+                </div>
+                <div className="space-y-3 md:space-y-4">
+                  <label className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest ml-1">Briefing</label>
+                  <textarea 
+                    rows={4} 
+                    placeholder="OBJECTIVES..." 
+                    className="w-full bg-zinc-950 border border-white/5 px-6 md:px-8 py-4 md:py-6 text-white text-sm focus:border-brand-primary outline-none transition-all resize-none placeholder:text-zinc-800"
+                  ></textarea>
+                </div>
+                <button className="w-full py-6 md:py-8 bg-brand-primary text-black font-black text-[11px] md:text-[12px] tracking-[0.4em] uppercase flex items-center justify-center gap-4 hover:bg-white transition-all">
+                  TRANSMIT_REQUEST <ArrowRight size={18} />
+                </button>
+              </form>
+            </div>
           </div>
         </div>
 
-        <div className="mt-32 pt-12 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-6 opacity-40">
-          <p className="text-small font-mono tracking-tighter">© 2024 Beerendra K — Narrative Architect</p>
-          <div className="flex gap-8 text-[10px] font-mono uppercase tracking-widest">
-            <span>Hyderabad, India</span>
+        <div className="mt-24 md:mt-40 pt-12 md:pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12">
+          <div className="flex items-center gap-4 md:gap-6">
+             <div className="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></div>
+             <p className="text-[10px] md:text-[11px] font-mono text-zinc-600 uppercase tracking-[0.4em] md:tracking-[0.6em] text-center md:text-left">© 2024 BEERENDRA.K // VISUAL STRATEGIST</p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-8 md:gap-16 text-[9px] md:text-[10px] font-mono uppercase tracking-[0.4em] text-zinc-700">
+            <span className="flex items-center gap-2"><MapPin size={12} /> Hyderabad, IN</span>
             <span>Est. 2010</span>
           </div>
         </div>

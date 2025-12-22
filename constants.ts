@@ -1,15 +1,7 @@
 import { ExperienceItem, Project, SkillCategory } from './types';
 
-// =================================================================================
-// INSTRUCTIONS FOR YOUR PHOTO:
-// 1. Rename your photo to 'profile.jpg' (or .png)
-// 2. Place it in the 'public' folder of your project (or the root folder).
-// 3. The code below will use it. 
-//    If your file is missing, it will use the placeholder image automatically.
-// =================================================================================
-
 export const PROFILE_IMAGE = "https://media.licdn.com/dms/image/v2/D5603AQFD-PtbqjUk3Q/profile-displayphoto-scale_400_400/B56ZsmzQ.dG4Ag-/0/1765882533354?e=1767225600&v=beta&t=Q9MNZUiyxubeEH2hx_-GxjEFcXsZhOhvNu2iXHrtVQA"; 
-export const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=2000&auto=format&fit=crop"; // Professional Placeholder
+export const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=2000&auto=format&fit=crop"; 
 
 export const RESUME_SUMMARY = `
 Name: Beerendra Karukola
@@ -20,24 +12,8 @@ LinkedIn: https://www.linkedin.com/in/beerendra-karukola-6710b8153
 
 Summary:
 Senior Video Editor with 14+ years of experience specializing in political campaigns, social impact storytelling, and OTT localization. 
-Has generated over 500M+ lifetime views and delivered over 14,500 finalized edits across News, MCNs, and Political Campaigns.
-Expert in repurposing long-form content into high-retention short-form reels.
+Has generated over 500M+ lifetime views and delivered over 14,500 finalized edits.
 Key Achievement: Subtitled 80+ shows/movies for KUKU TV. Drove ₹24 crore in donations via Donatekart.
-
-Work Experience:
-- Freelance Senior Editor (Mar 2024 - Present): 
-  - Subtitled 80+ shows and movies for KUKU TV and various production houses.
-  - Specializes in turning long-form archival footage into engaging, viral-ready reels/shorts.
-  - Continued work with Donatekart and Political Campaigns.
-- IPAC Political Consultancy (Dec 2022 - Feb 2024 & May 2018 - Dec 2019): Lead editor for high-stakes political campaigns (reaching 20M voters).
-- Donatekart (Dec 2022 - Feb 2024): Social impact storytelling.
-- Whacked Out Media (May 2015 - May 2018): Sr. Video Editor for MCNs (Startup Stories).
-- V6 News & TNN News: News editing foundation.
-
-Skills:
-- Core: Narrative Editing, Color Grading, Sound Design, Subtitling/Localization.
-- Strategy: Long-to-Short Content Repurposing, Retention Optimization.
-- Tools: Premiere Pro, After Effects, DaVinci Resolve, AI Enhancement Tools.
 `;
 
 export const EXPERIENCES: ExperienceItem[] = [
@@ -48,7 +24,7 @@ export const EXPERIENCES: ExperienceItem[] = [
     period: 'March 2024 - Present',
     description: [
       'Subtitled and localized over 80+ shows and movies for KUKU TV and various production houses.',
-      'Specialist in "Content Repurposing": Transforming hour-long podcasts and footage into high-retention Reels/Shorts.',
+      'Specialist in "Content Repurposing": Transforming hour-long podcasts into high-retention Reels/Shorts.',
       'Drove ₹24 crore in donations for Donatekart via emotionally compelling storytelling.',
       'Led post-production for 2024 General Elections, contributing to 500M+ lifetime career views.'
     ]
@@ -109,15 +85,15 @@ export const EXPERIENCES: ExperienceItem[] = [
 export const SKILLS: SkillCategory[] = [
   {
     title: 'Post-Production',
-    skills: ['Premiere Pro', 'After Effects', 'DaVinci Resolve', 'Subtitling', 'Audio Mixing', 'Color Grading']
+    skills: ['Premiere Pro Pro', 'After Effects', 'DaVinci Resolve', 'Localization Mastering', 'Dolby Audio Mixing', 'Technical QC']
   },
   {
     title: 'Content Strategy',
-    skills: ['Long-to-Short Repurposing', 'Viral Retention Hooks', 'Thumbnail Design', 'YouTube SEO', 'Trend Analysis']
+    skills: ['Long-to-Short Repurposing', 'Retention Hook Engineering', 'A/B Thumbnail Testing', 'YouTube Algorithm Optimization', 'Viral Scaling']
   },
   {
-    title: 'AI & Speed Workflow',
-    skills: ['Runway Gen-2', 'Topaz Video AI', 'Descript (Transcription)', 'Auto-Captions', 'Generative Fill']
+    title: 'AI Toolchain (Latest)',
+    skills: ['Adobe Firefly Video', 'ElevenLabs AI (Dubbing)', 'HeyGen (Lip-Sync)', 'Topaz Video AI 5', 'Magnific AI Refiner', 'Kling AI / Luma']
   }
 ];
 
@@ -125,10 +101,10 @@ export const PROJECTS: Project[] = [
   {
     id: 'kukufm',
     title: 'KUKU TV & OTT Localization',
-    description: 'Subtitled and mastered 80+ shows and movies for KUKU TV and various production houses. Handled complex localization timelines.',
+    description: 'Subtitled and mastered 80+ shows and movies for KUKU TV. Handled complex multi-language localization timelines.',
     link: 'https://kukufm.com/', 
     imageUrl: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=2670&auto=format&fit=crop',
-    tags: ['Subtitles', 'Massive Scale', 'Localization']
+    tags: ['Subtitles', 'OTT Localization', 'Massive Scale']
   },
   {
     id: 'social-impact',
@@ -136,15 +112,15 @@ export const PROJECTS: Project[] = [
     description: 'Emotional storytelling that drove ₹24 crore in donations. Specialized in high-conversion fundraising content.',
     link: 'https://www.youtube.com/@Donatekart/videos',
     imageUrl: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop',
-    tags: ['Fundraising', 'Documentary', 'Impact']
+    tags: ['Fundraising', 'Social Impact', 'Conversion']
   },
   {
     id: 'startup-stories',
     title: 'Startup Stories TV',
-    description: 'End-to-end production for entrepreneurship videos and motivational content. Multi-language strategy driving millions of views.',
+    description: 'End-to-end production for entrepreneurship videos and motivational content. Driving millions of views.',
     link: 'https://www.youtube.com/@StartupStoriesTV/videos',
     imageUrl: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2664&auto=format&fit=crop',
-    tags: ['500M+ Views', 'Business', 'Long-Form']
+    tags: ['500M+ Views', 'Business Narratives', 'MCN']
   },
   {
     id: 'political-song',
@@ -152,7 +128,7 @@ export const PROJECTS: Project[] = [
     description: 'Edited India’s most-viewed political campaign song (Record holder till 2024). High-energy cuts and motion graphics.',
     link: 'https://youtu.be/eWGMXR2WTKA',
     imageUrl: 'https://img.youtube.com/vi/eWGMXR2WTKA/maxresdefault.jpg',
-    tags: ['Premiere Pro', 'Viral', 'Music Video']
+    tags: ['Political Strategy', 'Viral Content', 'Music Video']
   }
 ];
 

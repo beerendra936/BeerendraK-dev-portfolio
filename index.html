@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BEERENDRA K. | Narrative Architect</title>
+    <title>BEERENDRA.K | Visual Strategist</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         theme: {
@@ -16,11 +16,11 @@
             },
             colors: {
               brand: {
-                primary: '#00d4ff',
-                secondary: '#ff6b6b',
-                accent: '#00ff88',
-                dark: '#030303',
-                card: '#0f0f0f',
+                primary: '#00d4ff', // Arctic Cyan
+                secondary: '#ffffff',
+                accent: '#00ffaa', // Matrix Green
+                dark: '#050505',
+                panel: '#0a0a0a',
                 border: 'rgba(255, 255, 255, 0.05)',
               }
             }
@@ -30,89 +30,93 @@
     </script>
     <style>
       body {
-        background-color: #030303;
-        color: #e5e7eb;
+        background-color: #050505;
+        color: #f8fafc;
         -webkit-font-smoothing: antialiased;
         overflow-x: hidden;
       }
 
-      /* Custom Cursor - Minimalist & Non-Intrusive */
-      #cursor {
-        position: fixed;
-        width: 10px;
-        height: 10px;
-        background: #00d4ff;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 10000;
-        transition: transform 0.15s ease-out;
-      }
-
-      /* Grid Line Background */
-      .grid-lines {
-        background-size: 40px 40px;
-        background-image: linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
-                          linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
-      }
-
-      /* Grain Overlay */
-      .grain {
+      .noise-overlay {
         position: fixed;
         top: 0; left: 0; width: 100%; height: 100%;
         background-image: url('https://grainy-gradients.vercel.app/noise.svg');
         opacity: 0.02;
         pointer-events: none;
-        z-index: 999;
+        z-index: 1000;
       }
 
-      /* Section Transitions */
-      .section-fade {
-        border-top: 1px solid rgba(255, 255, 255, 0.03);
+      #cursor-ring {
+        position: fixed;
+        width: 32px;
+        height: 32px;
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transition: transform 0.1s linear;
       }
 
-      ::-webkit-scrollbar { width: 4px; }
-      ::-webkit-scrollbar-track { background: #030303; }
-      ::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 2px; }
+      .technical-grid {
+        background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        background-size: 50px 50px;
+      }
 
-      .text-balance { text-wrap: balance; }
+      .safe-zone {
+        position: fixed;
+        inset: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.01);
+        pointer-events: none;
+        z-index: 100;
+      }
+
+      .corner-l { position: absolute; width: 12px; height: 12px; border-color: rgba(255, 255, 255, 0.1); }
       
-      /* Clamp for massive typography to prevent overlap */
-      .h1-clamp {
-        font-size: clamp(2.5rem, 8vw, 6rem);
-        line-height: 0.95;
+      ::-webkit-scrollbar { width: 4px; }
+      ::-webkit-scrollbar-track { background: #050505; }
+      ::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 0; }
+      
+      .text-glow { text-shadow: 0 0 30px rgba(0, 212, 255, 0.4); }
+      .studio-glass {
+        background: rgba(10, 10, 10, 0.8);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
       }
     </style>
   <script type="importmap">
 {
   "imports": {
     "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "react/": "https://esm.sh/react@^19.2.3/",
-    "framer-motion": "https://esm.sh/framer-motion@^12.23.26",
-    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
     "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "framer-motion": "https://esm.sh/framer-motion@^12.23.26"
   }
 }
 </script>
 </head>
-  <body class="font-sans grid-lines">
-    <div id="cursor"></div>
-    <div class="grain"></div>
-    <div id="root"></div>
+  <body>
+    <div id="cursor-ring"></div>
+    <div class="noise-overlay"></div>
+    
+    <div class="safe-zone">
+      <div class="corner-l top-0 left-0 border-t border-l"></div>
+      <div class="corner-l top-0 right-0 border-t border-r"></div>
+      <div class="corner-l bottom-0 left-0 border-b border-l"></div>
+      <div class="corner-l bottom-0 right-0 border-b border-r"></div>
+      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 font-mono text-[8px] text-zinc-700 tracking-[1em] uppercase">
+        Signal: Locked // 24.00 fps
+      </div>
+    </div>
+
+    <div id="root" class="technical-grid min-h-screen"></div>
+
     <script>
-      const cursor = document.getElementById('cursor');
+      const ring = document.getElementById('cursor-ring');
       document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-      });
-      document.addEventListener('mouseover', (e) => {
-        if (e.target.closest('button, a, .interactive')) {
-          cursor.style.transform = 'scale(4)';
-          cursor.style.background = 'rgba(0, 212, 255, 0.3)';
-        } else {
-          cursor.style.transform = 'scale(1)';
-          cursor.style.background = '#00d4ff';
-        }
+        ring.style.left = `${e.clientX - 16}px`;
+        ring.style.top = `${e.clientY - 16}px`;
       });
     </script>
   </body>
