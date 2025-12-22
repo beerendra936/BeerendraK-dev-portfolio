@@ -46,77 +46,75 @@ const BeforeAfter: React.FC = () => {
   }, [isDragging]);
 
   return (
-    <section className="py-24 bg-[#02040a] relative overflow-hidden">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-900/30 border border-indigo-500/30 text-indigo-400 text-xs font-mono mb-4">
-             <Zap size={12} />
-             <span>VISUAL ENHANCEMENT</span>
+    <section className="py-40 bg-brand-dark relative overflow-hidden px-6 lg:px-24">
+      <div className="container mx-auto max-w-7xl">
+        <div className="text-center mb-24">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-[10px] font-mono tracking-widest uppercase mb-6">
+             <Zap size={12} fill="currentColor" />
+             <span>The Craft of Enhancement</span>
           </div>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
-            THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500">GRADE</span> DIFFERENCE
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 uppercase tracking-tight">
+            Color <span className="text-zinc-800">Mastery.</span>
           </h2>
-          <p className="text-slate-400 max-w-xl mx-auto">
-            Drag the slider to see how I transform raw, flat LOG footage into broadcast-ready visuals through advanced color grading and cleanup.
+          <p className="text-zinc-500 max-w-xl mx-auto font-light text-lg">
+            Drag to see the translation from raw log footage to broadcast-ready narratives through advanced look-development.
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div 
             ref={containerRef}
-            className="relative w-full aspect-video rounded-2xl overflow-hidden border border-slate-800 shadow-2xl shadow-indigo-900/20 select-none cursor-ew-resize group"
+            className="relative w-full aspect-video rounded-sm overflow-hidden border border-white/5 cinematic-glow select-none cursor-ew-resize group"
             onMouseDown={handleMouseDown}
             onTouchStart={handleMouseDown}
           >
-            {/* Image 2 (After) - The Base */}
+            {/* Image 2 (After) */}
             <img 
               src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2525&auto=format&fit=crop" 
-              alt="After Color Grade" 
+              alt="Final Grade" 
               className="absolute inset-0 w-full h-full object-cover pointer-events-none"
             />
-            <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm px-3 py-1 rounded text-xs font-bold text-indigo-400 border border-indigo-500/30 pointer-events-none">
-              FINAL CUT
+            <div className="absolute top-6 right-6 bg-brand-dark/80 backdrop-blur-md px-4 py-1.5 rounded-sm text-[10px] font-bold text-brand-primary border border-brand-primary/20 pointer-events-none uppercase tracking-widest">
+              Final Grade
             </div>
 
-            {/* Image 1 (Before) - The Overlay */}
+            {/* Image 1 (Before) */}
             <div 
               className="absolute inset-0 w-full h-full overflow-hidden"
               style={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` }}
             >
               <img 
                 src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2525&auto=format&fit=crop" 
-                alt="Before Raw Footage" 
+                alt="Raw Footage" 
                 className="absolute inset-0 w-full h-full object-cover filter grayscale contrast-[0.8] brightness-[0.9] pointer-events-none" 
               />
-              <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-sm px-3 py-1 rounded text-xs font-bold text-slate-400 border border-white/10 pointer-events-none">
-                RAW / LOG
+              <div className="absolute top-6 left-6 bg-brand-dark/80 backdrop-blur-md px-4 py-1.5 rounded-sm text-[10px] font-bold text-zinc-500 border border-white/10 pointer-events-none uppercase tracking-widest">
+                Raw / Log
               </div>
             </div>
 
-            {/* Slider Handle */}
+            {/* Handle */}
             <div 
-              className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize z-20 shadow-[0_0_20px_rgba(255,255,255,0.5)]"
+              className="absolute top-0 bottom-0 w-[2px] bg-brand-primary cursor-ew-resize z-20 shadow-[0_0_20px_rgba(0,212,255,0.8)]"
               style={{ left: `${sliderPosition}%` }}
             >
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-xl text-indigo-900 hover:scale-110 transition-transform">
-                <ChevronsLeftRight size={20} />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-brand-primary rounded-full flex items-center justify-center shadow-2xl text-brand-dark hover:scale-110 transition-transform">
+                <ChevronsLeftRight size={24} />
               </div>
             </div>
           </div>
           
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-            <div className="p-4 bg-slate-900/50 rounded-lg border border-slate-800">
-              <h4 className="text-white font-bold text-sm mb-1">Color Correction</h4>
-              <p className="text-xs text-slate-500">Balancing exposure & white balance</p>
-            </div>
-            <div className="p-4 bg-slate-900/50 rounded-lg border border-slate-800">
-               <h4 className="text-white font-bold text-sm mb-1">Look Development</h4>
-               <p className="text-xs text-slate-500">Creating mood & atmosphere</p>
-            </div>
-            <div className="p-4 bg-slate-900/50 rounded-lg border border-slate-800">
-               <h4 className="text-white font-bold text-sm mb-1">Noise Reduction</h4>
-               <p className="text-xs text-slate-500">Cleaning up low-light artifacts</p>
-            </div>
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-1 px-1 bg-white/5 border border-white/5">
+            {[
+              { label: 'Color Correction', sub: 'Balanced Exposure' },
+              { label: 'Look Dev', sub: 'Cinematic Atmosphere' },
+              { label: 'Cleanup', sub: 'Noise Reduction' }
+            ].map(item => (
+              <div key={item.label} className="bg-brand-dark p-8 text-center group">
+                <h4 className="text-white font-bold text-xs uppercase tracking-widest mb-2 group-hover:text-brand-primary transition-colors">{item.label}</h4>
+                <p className="text-[10px] text-zinc-600 font-mono uppercase">{item.sub}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

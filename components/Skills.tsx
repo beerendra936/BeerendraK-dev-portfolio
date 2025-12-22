@@ -1,35 +1,41 @@
 import React from 'react';
 import { SKILLS } from '../constants';
+import { Code, Video, BrainCircuit } from 'lucide-react';
 
 const Skills: React.FC = () => {
+  const getIcon = (title: string) => {
+    if (title.includes('Post')) return <Video className="text-brand-primary" size={20} />;
+    if (title.includes('Strategy')) return <BrainCircuit className="text-brand-secondary" size={20} />;
+    return <Code className="text-brand-accent" size={20} />;
+  };
+
   return (
-    <section id="skills" className="py-40 bg-obsidian-950 px-6 lg:px-24">
-      <div className="container mx-auto max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-24">
+    <section id="skills" className="py-32 bg-brand-dark px-6 lg:px-24 border-t border-zinc-950">
+      <div className="container mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           
-          <div className="lg:col-span-5">
-            <span className="font-mono text-zinc-700 text-[10px] tracking-[1em] uppercase block mb-8">Capability Deck</span>
-            <h2 className="font-display text-5xl md:text-7xl font-bold text-white tracking-tighter uppercase leading-none mb-12">
-              TECHNICAL<br/><span className="text-zinc-900 transition-colors hover:text-zinc-800">DOMAIN.</span>
-            </h2>
-            <p className="text-zinc-500 text-xl leading-relaxed font-light italic border-l border-emerald-500/30 pl-8">
-              "Mastery of the tool is baseline. Mastery of the story is the objective."
+          <div className="lg:col-span-4 lg:sticky lg:top-40">
+            <span className="text-brand-primary font-mono text-[10px] tracking-widest uppercase mb-4 block">Tech Stack</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 tracking-tight">The Mastery of Tools.</h2>
+            <p className="text-zinc-500 text-lg font-light leading-relaxed">
+              Combining world-class post-production software with AI acceleration to deliver cinematic quality at speed.
             </p>
           </div>
 
-          <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8">
             {SKILLS.map((category) => (
-              <div key={category.title} className="space-y-10">
-                <div className="flex items-center gap-4">
-                   <div className="h-px flex-1 bg-white/10"></div>
-                   <h3 className="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.4em]">{category.title}</h3>
+              <div key={category.title} className="p-8 rounded-2xl bg-brand-card border border-zinc-800 hover:border-zinc-700 transition-all group">
+                <div className="flex items-center gap-4 mb-8">
+                   <div className="w-10 h-10 rounded-lg bg-zinc-900 flex items-center justify-center border border-zinc-800 group-hover:scale-110 transition-transform">
+                    {getIcon(category.title)}
+                   </div>
+                   <h3 className="font-bold text-white text-lg">{category.title}</h3>
                 </div>
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill) => (
-                    <div key={skill} className="group flex justify-between items-center py-4 border-b border-white/5">
-                      <span className="font-display font-bold text-lg text-white group-hover:text-emerald-400 transition-colors uppercase tracking-tight">{skill}</span>
-                      <span className="font-mono text-[8px] text-zinc-700 group-hover:text-zinc-500 transition-colors uppercase">Proficiency 95%+</span>
-                    </div>
+                    <span key={skill} className="px-3 py-1.5 rounded bg-zinc-900 border border-zinc-800 text-[11px] text-zinc-400 font-medium tracking-wide">
+                      {skill}
+                    </span>
                   ))}
                 </div>
               </div>

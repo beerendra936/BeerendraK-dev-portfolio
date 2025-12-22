@@ -3,32 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>K. BEERENDRA | Narrative Architect</title>
+    <title>K. BEERENDRA | Senior Video Editor</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Syncopate:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-              display: ['Syncopate', 'sans-serif'],
+              sans: ['Figtree', 'sans-serif'],
               mono: ['JetBrains Mono', 'monospace'],
             },
             colors: {
-              obsidian: {
-                950: '#020202',
-                900: '#080808',
-                800: '#121212',
-                700: '#1a1a1a',
+              brand: {
+                primary: '#00d4ff',   // Electric Blue
+                secondary: '#ff6b6b', // Soft Coral
+                accent: '#00ff88',    // Matrix Green
+                dark: '#0a0a0a',      // Pitch Black
+                card: '#161616',      // Dark Charcoal
               },
-              emerald: {
-                500: '#10b981',
+              zinc: {
+                950: '#050505',
               }
             },
             letterSpacing: {
-              'tighter-extra': '-0.04em',
-              'widest-extra': '0.4em',
+              'tight-subtle': '-0.02em',
+              'wide-premium': '0.15em',
             }
           }
         }
@@ -36,19 +36,23 @@
     </script>
     <style>
       body {
-        background-color: #020202;
-        color: #9494b8;
+        background-color: #0a0a0a;
+        color: #a1a1aa;
         overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
       }
       ::selection {
-        background: #10b981;
+        background: #00d4ff;
         color: #000;
       }
-      .glass-card {
-        background: rgba(18, 18, 18, 0.4);
+      .cinematic-glow {
+        box-shadow: 0 0 60px -15px rgba(0, 212, 255, 0.15);
+      }
+      .glass-surface {
+        background: rgba(22, 22, 22, 0.7);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.05);
       }
       .grain {
         position: fixed;
@@ -57,7 +61,7 @@
         width: 100%;
         height: 100%;
         background-image: url('https://grainy-gradients.vercel.app/noise.svg');
-        opacity: 0.03;
+        opacity: 0.015;
         pointer-events: none;
         z-index: 999;
       }
@@ -65,10 +69,10 @@
         width: 4px;
       }
       ::-webkit-scrollbar-track {
-        background: #020202;
+        background: #0a0a0a;
       }
       ::-webkit-scrollbar-thumb {
-        background: #1a1a1a;
+        background: #1e1e1e;
         border-radius: 2px;
       }
       .text-balance {

@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { GoogleGenAI } from "@google/genai";
-import { MessageSquare, X, Send, Bot, User, Loader2, Sparkles, Terminal } from 'lucide-react';
+import { MessageSquare, X, Send, Bot, User, Terminal } from 'lucide-react';
 import { RESUME_SUMMARY } from '../constants';
 import { ChatMessage } from '../types';
 
 const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { id: '1', role: 'model', text: "System Initialized. I am Beerendra's Digital Twin. Query my database regarding his editing skills or experience." }
+    { id: '1', role: 'model', text: "Status: Online. I am Beerendra's Digital Twin. Ask me about his 14-year editing trajectory or OTT projects." }
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -37,17 +37,17 @@ const ChatWidget: React.FC = () => {
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
       const model = 'gemini-2.5-flash';
-      const systemInstruction = `You are a futuristic, professional AI assistant for Beerendra Karukola, a Senior Video Editor.
-      Use the following resume data: ${RESUME_SUMMARY}.
+      const systemInstruction = `You are a futuristic, highly professional AI assistant for Beerendra Karukola, a Senior Video Editor.
+      Use the following context: ${RESUME_SUMMARY}.
       
-      Style: Efficient, slightly tech-focused but polite. Use terms like "Rendering answer...", "Analyzing request...".
-      Goal: Convince the user of Beerendra's high-end editing capabilities.
-      If info is missing, state it clearly and suggest contacting him directly.`;
+      Voice: Sophisticated, precise, executive. Refer to editing as "Visual Architecture".
+      Goal: Impress the potential client with facts about his reach (500M+ views) and OTT success (80+ titles).
+      Formatting: Keep responses concise.`;
 
       const response = await ai.models.generateContent({
         model: model,
         contents: [
-          { role: 'user', parts: [{ text: `Context: ${RESUME_SUMMARY} \n\n Question: ${userMsg.text}` }] }
+          { role: 'user', parts: [{ text: `User Question: ${userMsg.text}` }] }
         ],
         config: { systemInstruction },
       });
@@ -55,7 +55,7 @@ const ChatWidget: React.FC = () => {
       const aiMsg: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'model',
-        text: response.text || "Connection interrupted. Manual contact recommended."
+        text: response.text || "System sync failed. Please contact Beerendra directly via WhatsApp."
       };
 
       setMessages(prev => [...prev, aiMsg]);
@@ -63,7 +63,7 @@ const ChatWidget: React.FC = () => {
       setMessages(prev => [...prev, {
         id: Date.now().toString(),
         role: 'model',
-        text: "Error accessing core database. Please try again later."
+        text: "Database offline. Emergency contact: +91 9705552787"
       }]);
     } finally {
       setIsTyping(false);
@@ -78,54 +78,53 @@ const ChatWidget: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end font-sans">
+    <div className="fixed bottom-6 right-6 z-[110] flex flex-col items-end">
       {isOpen && (
-        <div className="mb-4 w-[320px] sm:w-[380px] h-[500px] bg-[#0b0f1a]/95 backdrop-blur-xl border border-indigo-500/30 rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-10 fade-in duration-300 ring-1 ring-white/10">
+        <div className="mb-4 w-[320px] sm:w-[380px] h-[500px] glass-card border border-brand-primary/20 rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-10 fade-in duration-300">
           
-          {/* Header - Sci-fi Style */}
-          <div className="bg-slate-900/50 p-4 border-b border-indigo-500/20 flex justify-between items-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-indigo-500/5 scanline opacity-10"></div>
-            <div className="flex items-center gap-3 relative z-10">
-              <div className="w-8 h-8 rounded bg-indigo-600/20 border border-indigo-500/50 flex items-center justify-center">
-                <Terminal size={16} className="text-indigo-400" />
+          {/* Header */}
+          <div className="bg-brand-dark p-4 border-b border-white/5 flex justify-between items-center">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-brand-primary/10 border border-brand-primary/30 flex items-center justify-center">
+                <Terminal size={14} className="text-brand-primary" />
               </div>
               <div>
-                <h3 className="font-bold text-slate-100 text-sm tracking-wide">AI_ASSISTANT_V2</h3>
+                <h3 className="font-bold text-white text-xs tracking-widest uppercase">Beerendra.AI</h3>
                 <div className="flex items-center gap-1.5">
-                   <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                   <p className="text-[10px] font-mono text-indigo-300">ONLINE</p>
+                   <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse"></span>
+                   <p className="text-[9px] font-mono text-zinc-500 uppercase">System Active</p>
                 </div>
               </div>
             </div>
             <button 
               onClick={() => setIsOpen(false)}
-              className="text-slate-400 hover:text-white hover:rotate-90 transition-all duration-300"
+              className="text-zinc-500 hover:text-white transition-all"
             >
-              <X size={20} />
+              <X size={18} />
             </button>
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-transparent scrollbar-thin scrollbar-thumb-slate-700">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-zinc-800">
             {messages.map((msg) => (
               <div 
                 key={msg.id} 
                 className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
               >
-                <div className={`w-8 h-8 rounded flex items-center justify-center flex-shrink-0 border ${
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 border ${
                     msg.role === 'user' 
-                    ? 'bg-slate-800 border-slate-600' 
-                    : 'bg-indigo-950/50 border-indigo-500/30'
+                    ? 'bg-zinc-800 border-zinc-700' 
+                    : 'bg-brand-primary/10 border-brand-primary/20'
                   }`}
                 >
-                  {msg.role === 'user' ? <User size={14} className="text-slate-300" /> : <Bot size={14} className="text-indigo-400" />}
+                  {msg.role === 'user' ? <User size={12} className="text-zinc-400" /> : <Bot size={12} className="text-brand-primary" />}
                 </div>
                 
                 <div 
-                  className={`p-3 rounded text-sm max-w-[85%] leading-relaxed shadow-lg ${
+                  className={`p-3 rounded-2xl text-[13px] max-w-[85%] leading-relaxed ${
                     msg.role === 'user' 
-                      ? 'bg-slate-800 text-slate-100 border border-slate-700' 
-                      : 'bg-[#1e293b]/80 border border-indigo-500/20 text-slate-200'
+                      ? 'bg-zinc-800 text-white' 
+                      : 'bg-zinc-900 border border-white/5 text-zinc-300'
                   }`}
                 >
                   {msg.text}
@@ -134,14 +133,14 @@ const ChatWidget: React.FC = () => {
             ))}
             
             {isTyping && (
-              <div className="flex gap-3 animate-pulse">
-                <div className="w-8 h-8 rounded bg-indigo-950/50 border border-indigo-500/30 flex items-center justify-center flex-shrink-0">
-                  <Bot size={14} className="text-indigo-400" />
+              <div className="flex gap-3">
+                <div className="w-8 h-8 rounded-full bg-brand-primary/10 border border-brand-primary/20 flex items-center justify-center flex-shrink-0">
+                  <Bot size={12} className="text-brand-primary" />
                 </div>
-                <div className="px-4 py-2 bg-[#1e293b]/80 border border-indigo-500/20 rounded flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce"></span>
-                  <span className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce delay-100"></span>
-                  <span className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce delay-200"></span>
+                <div className="p-3 bg-zinc-900 border border-white/5 rounded-2xl flex items-center gap-1">
+                  <span className="w-1 h-1 bg-brand-primary rounded-full animate-bounce"></span>
+                  <span className="w-1 h-1 bg-brand-primary rounded-full animate-bounce [animation-delay:0.2s]"></span>
+                  <span className="w-1 h-1 bg-brand-primary rounded-full animate-bounce [animation-delay:0.4s]"></span>
                 </div>
               </div>
             )}
@@ -149,20 +148,20 @@ const ChatWidget: React.FC = () => {
           </div>
 
           {/* Input Area */}
-          <div className="p-3 bg-slate-900/50 border-t border-indigo-500/20 backdrop-blur-sm">
+          <div className="p-4 bg-brand-dark/50 border-t border-white/5">
             <div className="relative flex items-center gap-2">
               <input
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyPress}
-                placeholder="Ex: What software does he use?"
-                className="flex-1 bg-slate-950/50 border border-slate-700 text-slate-200 rounded px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/50 transition-all font-mono placeholder:text-slate-600"
+                placeholder="Ask about OTT experience..."
+                className="flex-1 bg-zinc-900 border border-zinc-800 text-white rounded-xl px-4 py-3 text-[13px] focus:outline-none focus:border-brand-primary transition-all font-sans"
               />
               <button 
                 onClick={handleSendMessage}
                 disabled={!inputValue.trim() || isTyping}
-                className="p-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-indigo-600/20"
+                className="p-3 bg-brand-primary text-brand-dark rounded-xl transition-all disabled:opacity-50"
               >
                 <Send size={16} />
               </button>
@@ -174,16 +173,9 @@ const ChatWidget: React.FC = () => {
       {/* Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="group relative flex items-center justify-center w-14 h-14 bg-white hover:bg-indigo-50 text-indigo-900 rounded-full shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all duration-300 transform hover:scale-105"
+        className="group w-14 h-14 bg-brand-primary text-brand-dark rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-all duration-300 cinematic-glow"
       >
-        <div className="absolute inset-0 rounded-full border-2 border-indigo-600/10 animate-ping opacity-20"></div>
         {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
-        
-        {!isOpen && (
-          <div className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 rounded-full border-2 border-slate-900 flex items-center justify-center">
-            <span className="text-[10px] font-bold text-white">1</span>
-          </div>
-        )}
       </button>
     </div>
   );
