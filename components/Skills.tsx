@@ -1,71 +1,41 @@
 import React from 'react';
 import { SKILLS } from '../constants';
-import { Cpu, Film, TrendingUp, Zap } from 'lucide-react';
 
 const Skills: React.FC = () => {
   return (
-    <section id="skills" className="py-24 bg-[#030712] relative">
-      <div className="container mx-auto px-6">
-        
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          {/* Left Panel: Statement */}
-          <div className="lg:col-span-4 space-y-8">
-            <div className="inline-block p-3 rounded-2xl bg-slate-900 border border-slate-800">
-              <Zap size={32} className="text-yellow-400 fill-yellow-400/20" />
-            </div>
-            
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-white leading-tight">
-              HYBRID <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">WORKFLOW</span>
+    <section id="skills" className="py-40 bg-obsidian-950 px-6 lg:px-24">
+      <div className="container mx-auto max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-24">
+          
+          <div className="lg:col-span-5">
+            <span className="font-mono text-zinc-700 text-[10px] tracking-[1em] uppercase block mb-8">Capability Deck</span>
+            <h2 className="font-display text-5xl md:text-7xl font-bold text-white tracking-tighter uppercase leading-none mb-12">
+              TECHNICAL<br/><span className="text-zinc-900 transition-colors hover:text-zinc-800">DOMAIN.</span>
             </h2>
-            
-            <p className="text-slate-400 leading-relaxed border-l-2 border-slate-800 pl-6">
-              I don't just edit; I engineer content. By fusing traditional non-linear editing (NLE) with Generative AI, I deliver broadcast-quality results at digital speeds.
+            <p className="text-zinc-500 text-xl leading-relaxed font-light italic border-l border-emerald-500/30 pl-8">
+              "Mastery of the tool is baseline. Mastery of the story is the objective."
             </p>
-
-            <div className="p-6 bg-indigo-950/20 rounded-xl border border-indigo-500/20 backdrop-blur-sm relative overflow-hidden">
-               <div className="absolute top-0 right-0 p-4 opacity-20">
-                 <Cpu size={64} />
-               </div>
-               <h4 className="text-white font-bold mb-2 font-mono text-sm">AI ACCELERATION</h4>
-               <p className="text-xs text-indigo-300 leading-relaxed">
-                 Using Runway & Topaz to upscaling, noise reduction, and generative fill, reducing post-production time by 40%.
-               </p>
-            </div>
           </div>
 
-          {/* Right Panel: Skill Grid */}
-          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-            {SKILLS.map((category, idx) => (
-              <div 
-                key={category.title} 
-                className="group p-8 rounded-2xl bg-slate-900/40 border border-slate-800 hover:bg-slate-800/60 hover:border-indigo-500/30 transition-all duration-300"
-              >
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="font-display text-xl font-bold text-slate-200 group-hover:text-white transition-colors">{category.title}</h3>
-                  <div className="text-slate-600 group-hover:text-indigo-400 transition-colors">
-                     {idx === 0 ? <Film size={20}/> : idx === 1 ? <Cpu size={20}/> : <TrendingUp size={20}/>}
-                  </div>
+          <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-12">
+            {SKILLS.map((category) => (
+              <div key={category.title} className="space-y-10">
+                <div className="flex items-center gap-4">
+                   <div className="h-px flex-1 bg-white/10"></div>
+                   <h3 className="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.4em]">{category.title}</h3>
                 </div>
-                
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-col gap-6">
                   {category.skills.map((skill) => (
-                    <span 
-                      key={skill} 
-                      className="px-3 py-1.5 text-xs font-mono font-medium text-slate-400 bg-slate-950 border border-slate-800 rounded hover:border-indigo-500 hover:text-indigo-300 transition-colors cursor-default"
-                    >
-                      {skill}
-                    </span>
+                    <div key={skill} className="group flex justify-between items-center py-4 border-b border-white/5">
+                      <span className="font-display font-bold text-lg text-white group-hover:text-emerald-400 transition-colors uppercase tracking-tight">{skill}</span>
+                      <span className="font-mono text-[8px] text-zinc-700 group-hover:text-zinc-500 transition-colors uppercase">Proficiency 95%+</span>
+                    </div>
                   ))}
-                </div>
-
-                {/* Decorative Progress Bar */}
-                <div className="mt-6 h-1 w-full bg-slate-800 rounded-full overflow-hidden">
-                  <div className="h-full bg-indigo-600 w-[85%] rounded-full opacity-50 group-hover:opacity-100 transition-opacity"></div>
                 </div>
               </div>
             ))}
           </div>
+
         </div>
       </div>
     </section>

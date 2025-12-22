@@ -1,53 +1,48 @@
 import React from 'react';
-import { FileVideo, Scissors, Wand2, UploadCloud } from 'lucide-react';
+import { Layers, Scissors, Wand2, Box } from 'lucide-react';
 
 const Process: React.FC = () => {
   const steps = [
     {
-      icon: <FileVideo size={24} />,
-      title: 'Ingest & Sync',
-      desc: 'Organizing raw footage, proxy generation for speed, and audio synchronization.'
+      icon: <Layers size={18} />,
+      title: 'Architectural Sync',
+      desc: 'High-speed ingestion, metadata tagging, and multi-cam synchronization.'
     },
     {
-      icon: <Scissors size={24} />,
-      title: 'Offline Edit',
-      desc: 'Structuring the narrative, pacing the cuts, and building the emotional arc.'
+      icon: <Scissors size={18} />,
+      title: 'Narrative Sculpting',
+      desc: 'Defining the emotional beats and structural foundation of the cut.'
     },
     {
-      icon: <Wand2 size={24} />,
-      title: 'Online & VFX',
-      desc: 'Color grading, sound design, motion graphics, and AI-enhanced cleanup.'
+      icon: <Wand2 size={18} />,
+      title: 'Post-Dynamics',
+      desc: 'Color grading, high-fidelity sound design, and AI-driven cleanup.'
     },
     {
-      icon: <UploadCloud size={24} />,
-      title: 'Delivery',
-      desc: 'Exporting in multi-format (4K, Reel, web) optimized for specific platforms.'
+      icon: <Box size={18} />,
+      title: 'Final Mastery',
+      desc: 'Global localization and multi-platform optimization.'
     }
   ];
 
   return (
-    <section className="py-20 border-t border-slate-900 bg-[#030712]">
-      <div className="container mx-auto px-6">
-        <div className="flex items-center gap-4 mb-12">
-           <div className="h-px bg-slate-800 flex-1"></div>
-           <span className="font-mono text-slate-500 text-xs tracking-widest uppercase">My Workflow</span>
-           <div className="h-px bg-slate-800 flex-1"></div>
+    <section className="py-40 bg-obsidian-950 px-6 border-t border-white/5">
+      <div className="container mx-auto max-w-7xl">
+        <div className="mb-24 text-center">
+          <span className="font-mono text-zinc-700 text-[10px] tracking-[0.8em] uppercase block mb-6">Proprietary Workflow</span>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-white uppercase tracking-tighter">
+            The <span className="text-emerald-500">Neural</span> Protocol.
+          </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-px bg-white/5 border border-white/5">
           {steps.map((step, idx) => (
-            <div key={idx} className="relative group">
-              <div className="mb-6 relative">
-                 <div className="w-12 h-12 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-center text-indigo-500 group-hover:text-white group-hover:bg-indigo-600 transition-all duration-300 relative z-10">
-                   {step.icon}
-                 </div>
-                 {/* Connector Line */}
-                 {idx !== steps.length - 1 && (
-                   <div className="hidden md:block absolute top-6 left-12 w-full h-px bg-slate-800 group-hover:bg-indigo-900/50 transition-colors"></div>
-                 )}
+            <div key={idx} className="bg-obsidian-950 p-12 hover:bg-obsidian-900 transition-all group">
+              <div className="text-zinc-700 group-hover:text-emerald-500 transition-colors mb-8">
+                {step.icon}
               </div>
-              <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
-              <p className="text-sm text-slate-500 leading-relaxed">{step.desc}</p>
+              <h3 className="text-lg font-display font-bold text-white uppercase mb-4 tracking-tight">{step.title}</h3>
+              <p className="text-sm text-zinc-500 font-light leading-relaxed">{step.desc}</p>
             </div>
           ))}
         </div>

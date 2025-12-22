@@ -3,63 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Beerendra Karukola | Senior Video Editor</title>
+    <title>K. BEERENDRA | Narrative Architect</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Syncopate:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
-              display: ['Oswald', 'sans-serif'],
+              display: ['Syncopate', 'sans-serif'],
               mono: ['JetBrains Mono', 'monospace'],
             },
-            backgroundSize: {
-              '300%': '300%',
-            },
             colors: {
-              brand: {
-                dark: '#030712', // Darker slate
-                purple: '#7c3aed',
-                blue: '#3b82f6',
-                accent: '#f59e0b',
-                red: '#ef4444' // REC color
+              obsidian: {
+                950: '#020202',
+                900: '#080808',
+                800: '#121212',
+                700: '#1a1a1a',
+              },
+              emerald: {
+                500: '#10b981',
               }
             },
-            animation: {
-              'spin-slow': 'spin 12s linear infinite',
-              'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-              'glitch': 'glitch 1s linear infinite',
-              'gradient-x': 'gradient-x 8s ease infinite',
-              'infinite-scroll': 'infinite-scroll 25s linear infinite',
-              'float-slow': 'float 6s ease-in-out infinite',
-              'float-delayed': 'float 6s ease-in-out infinite 3s',
-            },
-            keyframes: {
-              glitch: {
-                '2%, 64%': { transform: 'translate(2px,0) skew(0deg)' },
-                '4%, 60%': { transform: 'translate(-2px,0) skew(0deg)' },
-                '62%': { transform: 'translate(0,0) skew(5deg)' },
-              },
-              'gradient-x': {
-                '0%, 100%': {
-                  'background-size': '200% 200%',
-                  'background-position': 'left center'
-                },
-                '50%': {
-                  'background-size': '200% 200%',
-                  'background-position': 'right center'
-                },
-              },
-              'infinite-scroll': {
-                from: { transform: 'translateX(0)' },
-                to: { transform: 'translateX(-50%)' },
-              },
-              float: {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-20px)' },
-              }
+            letterSpacing: {
+              'tighter-extra': '-0.04em',
+              'widest-extra': '0.4em',
             }
           }
         }
@@ -67,60 +36,43 @@
     </script>
     <style>
       body {
-        background-color: #030712;
-        color: #f8fafc;
+        background-color: #020202;
+        color: #9494b8;
         overflow-x: hidden;
       }
-      
-      /* Film Grain Overlay */
-      .bg-grain {
+      ::selection {
+        background: #10b981;
+        color: #000;
+      }
+      .glass-card {
+        background: rgba(18, 18, 18, 0.4);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+      }
+      .grain {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
+        background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+        opacity: 0.03;
         pointer-events: none;
-        z-index: 50;
-        opacity: 0.04;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        z-index: 999;
       }
-
-      .glass-panel {
-        background: rgba(17, 24, 39, 0.6);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-      
-      .glass-pill {
-        background: rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      }
-
-      /* Custom Scrollbar */
       ::-webkit-scrollbar {
-        width: 6px;
+        width: 4px;
       }
       ::-webkit-scrollbar-track {
-        background: #030712; 
+        background: #020202;
       }
       ::-webkit-scrollbar-thumb {
-        background: #374151; 
-        border-radius: 3px;
+        background: #1a1a1a;
+        border-radius: 2px;
       }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #4b5563; 
-      }
-
-      .text-glow {
-        text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
-      }
-      
-      .clip-diagonal {
-        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      .text-balance {
+        text-wrap: balance;
       }
     </style>
   <script type="importmap">
@@ -129,6 +81,7 @@
     "react": "https://esm.sh/react@^19.2.3",
     "react/": "https://esm.sh/react@^19.2.3/",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "framer-motion": "https://esm.sh/framer-motion@^11.0.0",
     "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
     "@google/genai": "https://esm.sh/@google/genai@^1.33.0"
   }
@@ -136,6 +89,7 @@
 </script>
 </head>
   <body>
+    <div class="grain"></div>
     <div id="root"></div>
   </body>
 </html>

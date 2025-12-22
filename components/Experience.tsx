@@ -1,60 +1,48 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { EXPERIENCES } from '../constants';
 
 const Experience: React.FC = () => {
   return (
-    <section id="experience" className="py-24 bg-slate-950 relative overflow-hidden">
-      {/* Background Track Lines */}
-      <div className="absolute inset-0 flex flex-col justify-center opacity-10 pointer-events-none space-y-32">
-        <div className="w-full h-px bg-slate-700"></div>
-        <div className="w-full h-px bg-slate-700"></div>
-        <div className="w-full h-px bg-slate-700"></div>
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="mb-20">
-          <span className="font-mono text-indigo-500 text-xs tracking-widest uppercase mb-2 block">Career Timeline</span>
-          <h2 className="font-display text-5xl font-bold text-white">EDITING <span className="text-indigo-500">TRACKS</span></h2>
+    <section id="experience" className="py-40 bg-obsidian-950 px-6 lg:px-24 border-t border-white/5">
+      <div className="container mx-auto max-w-7xl">
+        <div className="mb-24">
+          <span className="font-mono text-zinc-700 text-[10px] tracking-[1em] uppercase block mb-6">Career Ledger</span>
+          <h2 className="font-display text-5xl md:text-7xl font-bold text-white tracking-tighter uppercase leading-none">
+            Chronological<br/><span className="text-zinc-900">Succession.</span>
+          </h2>
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-px bg-white/5 border border-white/5 rounded-sm overflow-hidden">
           {EXPERIENCES.map((exp, index) => (
-            <div 
+            <motion.div 
               key={exp.id} 
-              className="group relative"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="group grid grid-cols-1 md:grid-cols-12 items-start p-12 md:p-16 bg-obsidian-950 hover:bg-obsidian-900 transition-all duration-500"
             >
-              {/* Track Header */}
-              <div className="flex items-center gap-4 mb-3">
-                <div className="font-mono text-xs text-slate-500 bg-slate-900 px-2 py-1 rounded border border-slate-800">
-                  V{EXPERIENCES.length - index}
-                </div>
-                <div className="w-full h-px bg-slate-800 group-hover:bg-indigo-900/50 transition-colors"></div>
-                <div className="font-mono text-xs text-slate-500 whitespace-nowrap">
-                  {exp.period}
-                </div>
+              <div className="md:col-span-2 mb-8 md:mb-0">
+                <span className="font-mono text-[10px] text-zinc-700 group-hover:text-emerald-500 transition-colors">
+                  0{EXPERIENCES.length - index} — {exp.period.split(' ')[0]}
+                </span>
               </div>
 
-              {/* Clip / Card */}
-              <div className="ml-10 md:ml-16 bg-slate-900/80 border border-slate-700/50 rounded-lg p-6 hover:border-indigo-500 hover:bg-slate-800/80 transition-all duration-300 hover:translate-x-2 relative overflow-hidden">
-                {/* Selection Border - Left */}
-                <div className="absolute left-0 top-0 bottom-0 w-1 bg-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-1">{exp.role}</h3>
-                    <p className="text-indigo-400 font-medium mb-4 text-sm tracking-wide">{exp.company}</p>
-                    <ul className="space-y-2">
-                      {exp.description.map((item, i) => (
-                        <li key={i} className="text-slate-400 text-sm flex items-start gap-3">
-                           <span className="mt-1.5 w-1 h-1 bg-slate-500 rounded-full group-hover:bg-indigo-400 transition-colors"></span>
-                           <span className="leading-relaxed">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+              <div className="md:col-span-4 mb-8 md:mb-0">
+                <h3 className="text-2xl font-display font-bold text-white uppercase tracking-tighter mb-1">{exp.company}</h3>
+                <p className="font-mono text-[9px] text-zinc-600 uppercase tracking-widest">{exp.role}</p>
+              </div>
+
+              <div className="md:col-span-6">
+                <div className="space-y-6">
+                  {exp.description.map((item, i) => (
+                    <p key={i} className="text-zinc-500 group-hover:text-zinc-300 transition-colors text-lg font-light leading-relaxed">
+                      {item}
+                    </p>
+                  ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
