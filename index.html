@@ -29,6 +29,7 @@
               'float-3d': 'float-3d 6s ease-in-out infinite',
               'spin-slow': 'spin-slow 20s linear infinite',
               'spin-y': 'spin-y 15s linear infinite',
+              'grain': 'grain 8s steps(10) infinite',
             },
             keyframes: {
               'infinite-scroll': {
@@ -46,6 +47,18 @@
               'spin-y': {
                 'from': { transform: 'rotateY(0deg)' },
                 'to': { transform: 'rotateY(360deg)' }
+              },
+              'grain': {
+                '0%, 100%': { transform: 'translate(0, 0)' },
+                '10%': { transform: 'translate(-5%, -10%)' },
+                '20%': { transform: 'translate(-15%, 5%)' },
+                '30%': { transform: 'translate(7%, -25%)' },
+                '40%': { transform: 'translate(-5%, 25%)' },
+                '50%': { transform: 'translate(-15%, 10%)' },
+                '60%': { transform: 'translate(15%, 0%)' },
+                '70%': { transform: 'translate(0, 15%)' },
+                '80%': { transform: 'translate(3%, 35%)' },
+                '90%': { transform: 'translate(-10%, 10%)' },
               }
             },
             transitionTimingFunction: {
@@ -78,51 +91,32 @@
         z-index: 9999;
       }
 
-      /* Physical 3D Film Reel */
-      .film-reel-3d {
-        position: relative;
-        width: 180px;
-        height: 180px;
-        transform-style: preserve-3d;
-      }
-      .reel-plate {
+      /* High-end Film Grain */
+      .film-grain {
         position: absolute;
-        width: 180px;
-        height: 180px;
-        border-radius: 50%;
-        background: radial-gradient(circle, transparent 20%, rgba(255,255,255,0.03) 21%, rgba(255,255,255,0.06) 100%);
-        border: 1px solid rgba(255,255,255,0.08);
-        box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
-        /* Reel Perforations */
-        background-image: 
-          radial-gradient(circle at 50% 15%, transparent 12%, rgba(0,0,0,0.8) 13%),
-          radial-gradient(circle at 50% 85%, transparent 12%, rgba(0,0,0,0.8) 13%),
-          radial-gradient(circle at 15% 50%, transparent 12%, rgba(0,0,0,0.8) 13%),
-          radial-gradient(circle at 85% 50%, transparent 12%, rgba(0,0,0,0.8) 13%);
-      }
-      .plate-front { transform: translateZ(20px); }
-      .plate-back  { transform: translateZ(-20px); }
-      .reel-hub {
-        position: absolute;
-        width: 50px;
-        height: 50px;
-        left: 50%; top: 50%;
-        margin-left: -25px;
-        margin-top: -25px;
-        background: #050505;
-        border: 1px solid rgba(255,255,255,0.1);
-        border-radius: 50%;
-        transform: translateZ(0);
-        transform-style: preserve-3d;
+        top: -100%;
+        left: -100%;
+        width: 300%;
+        height: 300%;
+        background-image: url("https://www.transparenttextures.com/patterns/film-grain.png");
+        opacity: 0.15;
+        pointer-events: none;
+        animation: grain 8s steps(10) infinite;
       }
 
+      .stroke-text {
+        -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+        color: transparent;
+      }
+
+      /* Rolling Numbers System */
       .reel-viewport {
         display: inline-block;
         height: 1em;
-        line-height: 1em;
+        line-height: 1;
         overflow: hidden;
         position: relative;
-        vertical-align: bottom;
+        vertical-align: top;
       }
 
       .reel-strip {
@@ -136,15 +130,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        line-height: 1;
       }
 
-      .cyan-pulse {
-        animation: cyan-pulse 3s infinite;
-      }
-
-      @keyframes cyan-pulse {
-        0%, 100% { opacity: 1; text-shadow: 0 0 20px rgba(0, 212, 255, 0.6); }
-        50% { opacity: 0.8; text-shadow: 0 0 5px rgba(0, 212, 255, 0.2); }
+      .motion-blur {
+        filter: blur(2px);
+        transform: scaleY(1.1);
       }
 
       ::-webkit-scrollbar { width: 4px; }
@@ -172,6 +163,10 @@
       }
 
       .vertical-rl { writing-mode: vertical-rl; }
+      
+      h1 {
+        text-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      }
     </style>
     <script type="importmap">
     {
