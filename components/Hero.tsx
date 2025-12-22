@@ -1,99 +1,95 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Play, Sparkles, Scissors, Globe } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { ChevronDown, Target } from 'lucide-react';
 
 const Hero: React.FC = () => {
+  const title1 = "PRECISE.";
+  const title2 = "CINEMATIC.";
+  const { scrollY } = useScroll();
+
+  // Scroll-driven transforms for the experience badge
+  const badgeGlow = useTransform(scrollY, [0, 300], ["rgba(0, 212, 255, 0.1)", "rgba(0, 212, 255, 0.6)"]);
+  const badgeScale = useTransform(scrollY, [0, 300], [1, 1.1]);
+  const badgeY = useTransform(scrollY, [0, 500], [0, 50]);
+
   return (
-    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center px-6 lg:px-24 pt-20 overflow-hidden bg-brand-dark">
-      {/* Background Atmosphere - Indigo/Cyan wash */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vh] bg-brand-primary/[0.04] blur-[200px] rounded-full pointer-events-none"></div>
-      
-      <div className="container mx-auto max-w-6xl relative z-10 text-center">
-        <motion.div 
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex items-center justify-center gap-4 mb-10"
-        >
-          <div className="h-px w-10 bg-brand-primary/20"></div>
-          <span className="font-mono text-[10px] tracking-[1em] text-brand-primary uppercase font-black">
-            NARRATIVE_CRAFT_V14
-          </span>
-          <div className="h-px w-10 bg-brand-primary/20"></div>
-        </motion.div>
-
-        <motion.h1 
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-5xl md:text-[9rem] font-black text-white leading-[0.85] tracking-tighter uppercase mb-12 select-none"
-        >
-          CREATIVE<br/>
-          <span className="text-glow text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-900">CATALYST.</span>
-        </motion.h1>
-
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="max-w-4xl mx-auto space-y-12"
-        >
-          <p className="text-xl md:text-2xl text-zinc-400 font-light leading-relaxed px-4">
-            Forging <span className="text-white font-bold">High-Impact Visual Stories</span> that define modern culture. From OTT originals to viral political narratives.
-          </p>
-
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 py-8 border-y border-white/5">
-            <div className="flex items-center gap-4 group">
-              <div className="w-12 h-12 bg-white/5 border border-white/10 flex items-center justify-center text-brand-primary group-hover:bg-brand-primary/10 transition-all">
-                <Sparkles size={20} />
-              </div>
-              <div className="text-left">
-                <p className="text-[9px] font-mono text-zinc-600 uppercase">Impact Focus</p>
-                <p className="text-sm font-bold text-white uppercase tracking-widest">500M+ Global Views</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4 group">
-              <div className="w-12 h-12 bg-white/5 border border-white/10 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent/10 transition-all">
-                <Scissors size={20} />
-              </div>
-              <div className="text-left">
-                <p className="text-[9px] font-mono text-zinc-600 uppercase">Production</p>
-                <p className="text-sm font-bold text-white uppercase tracking-widest">14.5K Master Edits</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4 group">
-              <div className="w-12 h-12 bg-white/5 border border-white/10 flex items-center justify-center text-white group-hover:bg-white/10 transition-all">
-                <Globe size={20} />
-              </div>
-              <div className="text-left">
-                <p className="text-[9px] font-mono text-zinc-600 uppercase">Distribution</p>
-                <p className="text-sm font-bold text-white uppercase tracking-widest">80+ OTT Titles</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-6 pt-8">
-            <button className="group relative px-12 py-6 bg-brand-primary text-black font-black text-[11px] tracking-[0.4em] uppercase transition-all hover:bg-white hover:shadow-[0_0_60px_rgba(0,212,255,0.4)]">
-              <span className="flex items-center gap-4">VIEW_SHOWREEL <Play size={14} fill="currentColor" /></span>
-            </button>
-            
-            <button className="px-12 py-6 border border-white/10 text-zinc-500 font-bold text-[11px] tracking-[0.4em] uppercase hover:bg-white/5 hover:text-white transition-all">
-              CURATED_ARCHIVES
-            </button>
-          </div>
-        </motion.div>
+    <section id="home" className="relative h-screen flex flex-col items-center justify-center px-6 text-center overflow-hidden">
+      {/* HUD Focus Brackets in Background */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+        <div className="relative w-[80vw] h-[60vh] border border-white/5">
+          <Target className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-brand-cyan w-12 h-12" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 h-full w-px bg-white/5"></div>
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-px bg-white/5"></div>
+        </div>
       </div>
 
-      {/* Aesthetic Metadata */}
-      <div className="absolute bottom-12 left-6 right-6 lg:left-24 lg:right-24 flex justify-between items-end opacity-30 border-t border-white/5 pt-8">
-        <div className="font-mono text-[9px] uppercase tracking-[0.4em] space-y-2 text-left">
-          <p>Creative Dir: B. Karukola</p>
-          <p>Format: 4K_RAW_60FPS</p>
-        </div>
-        <div className="font-mono text-[9px] uppercase tracking-[0.8em]">
-          Studio_Status: Post_Active
-        </div>
+      {/* Parallax Background Decor */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.15 }}
+        transition={{ duration: 2 }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vw] bg-gradient-to-br from-brand-cyan/20 to-transparent blur-[180px] pointer-events-none"
+      ></motion.div>
+
+      <div className="relative z-10 max-w-5xl mx-auto">
+        {/* Highlighted Experience Badge - Linked to Scroll */}
+        <motion.div 
+          style={{ 
+            scale: badgeScale, 
+            backgroundColor: badgeGlow,
+            y: badgeY,
+            boxShadow: useTransform(scrollY, [0, 300], ["0 0 0px rgba(0,212,255,0)", "0 0 40px rgba(0,212,255,0.3)"])
+          }}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="font-mono text-[11px] text-brand-cyan uppercase tracking-[0.8em] mb-12 flex items-center justify-center gap-4 px-8 py-3 border border-brand-cyan/30 rounded-full transition-colors duration-300"
+        >
+          <div className="w-2 h-2 bg-brand-cyan rounded-full animate-ping"></div>
+          14+_YEARS_OF_POST_PRODUCTION_MASTERY
+          <div className="w-2 h-2 bg-brand-cyan rounded-full animate-ping"></div>
+        </motion.div>
+
+        <h1 className="text-6xl md:text-[92px] font-extrabold tracking-tighter uppercase leading-[0.85] mb-8">
+          <div className="char-reveal mb-2">
+            {title1.split('').map((char, i) => (
+              <span key={i} style={{ animationDelay: `${i * 0.05}s` }}>{char}</span>
+            ))}
+          </div>
+          <div className="char-reveal text-brand-cyan cyan-pulse">
+            {title2.split('').map((char, i) => (
+              <span key={i} style={{ animationDelay: `${(title1.length + i) * 0.05}s` }}>{char}</span>
+            ))}
+          </div>
+        </h1>
+
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+          className="text-lg md:text-xl text-zinc-400 font-light max-w-3xl mx-auto mb-16 flex flex-col items-center gap-4"
+        >
+          <span>Senior lead editor shaping narratives for the world's most influential campaigns and OTT platforms.</span>
+          <span className="h-px w-24 bg-white/10"></span>
+        </motion.p>
+      </div>
+
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.4 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 bounce-scroll cursor-pointer group"
+        onClick={() => document.getElementById('stats')?.scrollIntoView({ behavior: 'smooth' })}
+      >
+        <div className="font-mono text-[9px] text-white/40 uppercase tracking-widest mb-4 group-hover:text-brand-cyan transition-colors">SCRUB_TIMELINE</div>
+        <ChevronDown size={24} className="text-white mx-auto group-hover:text-brand-cyan transition-colors" />
+      </motion.div>
+
+      {/* Side HUD text elements */}
+      <div className="absolute left-10 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-24 opacity-20">
+         <div className="font-mono text-[9px] uppercase tracking-widest -rotate-90 origin-left">
+            EXPERIENCE_VETERAN // CORE_STABLE
+         </div>
       </div>
     </section>
   );

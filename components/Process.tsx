@@ -1,8 +1,13 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Target, Box, Code2, Database, Workflow, PenTool } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Target, Box, Code2, Database, Workflow, PenTool, Sparkles, Send, CheckCircle2 } from 'lucide-react';
+import { GoogleGenAI } from "@google/genai";
 
 const Process: React.FC = () => {
+  const [analysisInput, setAnalysisInput] = useState('');
+  const [analysisResult, setAnalysisResult] = useState<string | null>(null);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+
   const steps = [
     {
       id: '01',
@@ -34,6 +39,32 @@ const Process: React.FC = () => {
     }
   ];
 
+  const handleAnalyze = async () => {
+    if (!analysisInput.trim()) return;
+    setIsAnalyzing(true);
+    setAnalysisResult(null);
+
+    try {
+      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      const model = 'gemini-3-flash-preview'; // Flash for speed in UI interactions
+      const response = await ai.models.generateContent({
+        model: model,
+        contents: [{ 
+          role: 'user', 
+          parts: [{ text: `Analyze this video concept for retention and emotional impact based on Beerendra's 14 years of experience. Provide a concise 2-sentence strategy: ${analysisInput}` }] 
+        }],
+        config: { 
+          systemInstruction: "You are Beerendra's AI strategy consultant. Give snappy, high-impact advice on video retention."
+        }
+      });
+      setAnalysisResult(response.text || "Strategy engine offline.");
+    } catch (e) {
+      setAnalysisResult("AI module cooling down. Please contact directly for strategy.");
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+
   return (
     <section id="process" className="py-40 bg-brand-dark px-6 lg:px-24 relative border-t border-white/5">
       <div className="container mx-auto max-w-7xl">
@@ -41,16 +72,61 @@ const Process: React.FC = () => {
           
           <div className="lg:col-span-5 lg:sticky lg:top-40 h-fit">
             <div className="flex items-center gap-4 mb-8">
-              <Workflow size={18} className="text-brand-primary" />
-              <span className="font-mono text-brand-primary text-[10px] tracking-[1em] uppercase block">Creative Protocol</span>
+              <Workflow size={18} className="text-brand-cyan" />
+              <span className="font-mono text-brand-cyan text-[10px] tracking-[1em] uppercase block">Creative Protocol</span>
             </div>
             <h2 className="text-6xl md:text-8xl font-black text-white uppercase tracking-tighter leading-none mb-12">
               CREATIVE<br/><span className="text-zinc-800">EVOLUTION.</span>
             </h2>
-            <div className="p-10 border-l border-brand-primary/40 bg-zinc-950/80">
-               <p className="text-zinc-400 font-light text-2xl leading-relaxed italic">
-                 "Creativity is the alchemy that turns raw footage into cultural resonance."
-               </p>
+            
+            {/* AI Analyzer Tool */}
+            <div className="mt-16 p-8 border border-brand-cyan/20 bg-zinc-950/80 rounded-sm relative group overflow-hidden">
+               <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-20 transition-opacity">
+                  <Sparkles size={60} className="text-brand-cyan" />
+               </div>
+               <div className="relative z-10">
+                  <div className="flex items-center gap-2 mb-4">
+                     <Sparkles size={16} className="text-brand-cyan" />
+                     <span className="font-mono text-[9px] text-white uppercase tracking-widest">AI_STRATEGY_ENGINE [BETA]</span>
+                  </div>
+                  <p className="text-zinc-500 text-sm mb-6 font-light">
+                    Paste your project concept below for an instant retention analysis.
+                  </p>
+                  <div className="flex gap-2">
+                    <input 
+                      type="text" 
+                      value={analysisInput}
+                      onChange={(e) => setAnalysisInput(e.target.value)}
+                      placeholder="Enter project hook..." 
+                      className="flex-1 bg-zinc-900 border border-white/5 px-4 py-3 text-xs text-white focus:outline-none focus:border-brand-cyan transition-all"
+                    />
+                    <button 
+                      onClick={handleAnalyze}
+                      disabled={isAnalyzing || !analysisInput.trim()}
+                      className="p-3 bg-brand-cyan text-black hover:bg-white transition-all disabled:opacity-50"
+                    >
+                      {isAnalyzing ? <div className="w-4 h-4 border-2 border-black border-t-transparent animate-spin rounded-full"></div> : <Send size={16} />}
+                    </button>
+                  </div>
+                  
+                  <AnimatePresence>
+                    {analysisResult && (
+                      <motion.div 
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="mt-6 pt-6 border-t border-white/5"
+                      >
+                        <div className="flex gap-3">
+                           <CheckCircle2 size={14} className="text-brand-mint shrink-0 mt-1" />
+                           <p className="text-zinc-300 text-xs leading-relaxed italic">
+                             {analysisResult}
+                           </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+               </div>
             </div>
           </div>
 
@@ -62,17 +138,17 @@ const Process: React.FC = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="group relative p-14 bg-zinc-900/20 border border-white/5 hover:border-brand-primary/40 transition-all flex flex-col sm:flex-row gap-12"
+                className="group relative p-14 bg-zinc-900/20 border border-white/5 hover:border-brand-cyan/40 transition-all flex flex-col sm:flex-row gap-12"
               >
                 <div className="flex-shrink-0">
-                  <span className="text-7xl font-black text-zinc-900 group-hover:text-brand-primary/10 transition-colors block leading-none italic">
+                  <span className="text-7xl font-black text-zinc-900 group-hover:text-brand-cyan/10 transition-colors block leading-none italic">
                     {step.id}
                   </span>
                 </div>
                 
                 <div className="flex-1">
                   <div className="flex items-center gap-5 mb-6">
-                    <div className="p-4 border border-white/10 text-zinc-700 group-hover:text-brand-primary group-hover:border-brand-primary transition-all">
+                    <div className="p-4 border border-white/10 text-zinc-700 group-hover:text-brand-cyan group-hover:border-brand-cyan transition-all">
                       {step.icon}
                     </div>
                     <span className="font-mono text-[10px] text-zinc-600 tracking-[0.5em] uppercase">{step.tag}</span>

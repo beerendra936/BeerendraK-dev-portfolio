@@ -1,62 +1,86 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Activity, TrendingUp, Users, Target, Globe, ArrowUpRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, useInView } from 'framer-motion';
 
-const Impact: React.FC = () => {
-  const analytics = [
-    { icon: <Users size={16} />, val: '500M+', label: 'AUDIENCE_REACH', trend: '+18%', color: 'text-brand-primary' },
-    { icon: <TrendingUp size={16} />, val: '₹24Cr', label: 'CAMPAIGN_YIELD', trend: 'STABLE', color: 'text-brand-accent' },
-    { icon: <Globe size={16} />, val: '80+', label: 'GLOBAL_RELEASES', trend: 'ACTIVE', color: 'text-white' },
-    { icon: <Activity size={16} />, val: '14.5K', label: 'MASTER_EXPORTS', trend: 'PEAK', color: 'text-zinc-500' },
-  ];
+const DigitReel: React.FC<{ digit: string; delay: number }> = ({ digit, delay }) => {
+  const isNumber = !isNaN(parseInt(digit));
+  const [isRolling, setIsRolling] = useState(true);
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (isInView) {
+      const timer = setTimeout(() => setIsRolling(false), 2000 + (delay * 100));
+      return () => clearTimeout(timer);
+    }
+  }, [isInView, delay]);
+
+  if (!isNumber) return <span className="px-0.5 text-zinc-500 opacity-50">{digit}</span>;
+
+  const finalDigit = parseInt(digit);
 
   return (
-    <section className="py-40 bg-brand-dark px-6 lg:px-24 border-y border-white/5 relative overflow-hidden">
-      <div className="container mx-auto max-w-7xl">
-        <div className="mb-24 flex flex-col md:flex-row justify-between items-end border-b border-white/5 pb-12">
-          <div className="max-w-xl">
-            <span className="font-mono text-zinc-600 text-[10px] tracking-[1em] uppercase block mb-6">Creative Analytics Hub</span>
-            <h2 className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter leading-none">THE IMPACT <span className="text-zinc-800">DATA.</span></h2>
-          </div>
-          <div className="font-mono text-[9px] text-zinc-800 uppercase tracking-widest hidden md:block text-right">
-            CONTINUOUS_RECOVERY_MODE<br/>
-            SENSORS: OPTIMIZED
-          </div>
-        </div>
+    <span className="reel-viewport" ref={ref}>
+      <motion.span 
+        initial={{ y: 0 }}
+        animate={isInView ? { y: `-${finalDigit * 10}%` } : { y: 0 }}
+        transition={{ 
+          duration: 2.5, 
+          ease: [0.19, 1, 0.22, 1],
+          delay: delay * 0.1
+        }}
+        className={`reel-strip flex flex-col ${isRolling && isInView ? 'motion-blur' : ''}`}
+      >
+        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
+          <span key={num} className="h-[1.1em] flex items-center justify-center">{num}</span>
+        ))}
+      </motion.span>
+    </span>
+  );
+};
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 border border-white/5">
-          {analytics.map((item, i) => (
-            <motion.div 
-              key={i}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="p-16 bg-brand-dark group hover:bg-zinc-900/40 transition-all relative overflow-hidden"
-            >
-              <div className="flex justify-between items-start mb-16">
-                <div className={`p-5 bg-zinc-950 border border-white/5 ${item.color} group-hover:border-brand-primary transition-all`}>
-                  {item.icon}
-                </div>
-                <span className="font-mono text-[9px] text-zinc-600 group-hover:text-brand-primary transition-colors flex items-center gap-1">
-                  {item.trend} <ArrowUpRight size={10} />
-                </span>
-              </div>
-              
-              <div className="space-y-4">
-                <p className="text-7xl font-black text-white tracking-tighter group-hover:scale-[1.05] transition-transform origin-left">{item.val}</p>
-                <p className="font-mono text-[11px] text-zinc-500 uppercase tracking-[0.5em]">{item.label}</p>
-              </div>
-
-              {/* Data Visualization Decor */}
-              <div className="absolute bottom-0 left-0 w-full h-1 flex gap-1 opacity-10">
-                 {Array.from({length: 12}).map((_, idx) => (
-                    <div key={idx} className={`flex-1 h-full bg-zinc-800 transition-all duration-700 group-hover:bg-brand-primary`} 
-                         style={{ transitionDelay: `${idx * 40}ms` }}></div>
-                 ))}
-              </div>
-            </motion.div>
+const RollingNumber = ({ value, label, prefix = "", suffix = "" }: { value: string, label: string, prefix?: string, suffix?: string }) => {
+  return (
+    <div className="text-center p-12 md:p-16 relative group border-white/5">
+      {/* Top HUD Line */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[1px] bg-brand-cyan/40 group-hover:w-1/2 group-hover:bg-brand-cyan transition-all duration-700"></div>
+      
+      <div className="text-6xl md:text-8xl font-black text-brand-cyan mb-6 tracking-tighter flex justify-center items-center select-none">
+        {prefix && <span className="text-3xl mr-2 text-zinc-800 font-mono self-start mt-4">{prefix}</span>}
+        <div className="flex">
+          {value.split('').map((char, i) => (
+            <DigitReel key={i} digit={char} delay={i} />
           ))}
+        </div>
+        {suffix && <span className="text-4xl ml-2 text-white/90 font-sans self-end mb-2">{suffix}</span>}
+      </div>
+      
+      <div className="flex flex-col items-center">
+        <div className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.8em] mb-4 group-hover:text-white transition-colors">
+          {label}
+        </div>
+        <div className="flex gap-2">
+          <div className="w-1 h-1 bg-brand-cyan rounded-full animate-pulse"></div>
+          <div className="w-1 h-1 bg-zinc-900 rounded-full"></div>
+          <div className="w-1 h-1 bg-zinc-900 rounded-full"></div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Impact: React.FC = () => {
+  return (
+    <section id="stats" className="py-24 bg-brand-black border-y border-white/5 relative z-10 overflow-hidden">
+      {/* Data Labels */}
+      <div className="absolute top-6 left-10 font-mono text-[8px] text-zinc-800 uppercase tracking-widest hidden lg:block">
+        LOG_TYPE: AUDIENCE_METRICS // STATUS: NOMINAL
+      </div>
+      
+      <div className="container mx-auto max-w-7xl px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/5">
+          <RollingNumber value="500" label="Global Views" suffix="M+" />
+          <RollingNumber value="14.5" label="Master Edits" prefix="~" suffix="K" />
+          <RollingNumber value="080" label="OTT Titles" suffix="+" />
         </div>
       </div>
     </section>

@@ -11,9 +11,9 @@ Contact: beerendrakarukola9@gmail.com, 9705552787
 LinkedIn: https://www.linkedin.com/in/beerendra-karukola-6710b8153
 
 Summary:
-Senior Video Editor with 14+ years of experience specializing in political campaigns, social impact storytelling, and OTT localization. 
+Senior Video Editor with 14+ years of industry-leading experience specializing in political campaigns, social impact storytelling, and OTT localization. 
 Has generated over 500M+ lifetime views and delivered over 14,500 finalized edits.
-Key Achievement: Subtitled 80+ shows/movies for KUKU TV. Drove ₹24 crore in donations via Donatekart.
+Key Achievement: Subtitled 80+ shows/movies for KUKU TV. Drove ₹24 crore in donations via Donatekart. Former lead at IPAC.
 `;
 
 export const EXPERIENCES: ExperienceItem[] = [
@@ -89,7 +89,7 @@ export const SKILLS: SkillCategory[] = [
   },
   {
     title: 'Content Strategy',
-    skills: ['Long-to-Short Repurposing', 'Retention Hook Engineering', 'A/B Thumbnail Testing', 'YouTube Algorithm Optimization', 'Viral Scaling']
+    skills: ['Long-to-Short Repurposing', 'Retention Hook Engineering', 'Sound Design & Foley', 'YouTube Algorithm Optimization', 'Viral Scaling']
   },
   {
     title: 'AI Toolchain (Latest)',

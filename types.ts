@@ -25,4 +25,5 @@ export interface ChatMessage {
   role: 'user' | 'model';
   text: string;
   isLoading?: boolean;
+  citations?: { uri: string; title: string }[];
 }
