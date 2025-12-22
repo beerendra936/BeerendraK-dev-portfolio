@@ -1,36 +1,27 @@
-import React from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import LogoMarquee from './components/LogoMarquee';
-import Impact from './components/Impact';
-import Portfolio from './components/Portfolio';
-import BeforeAfter from './components/BeforeAfter';
-import Services from './components/Services';
-import Experience from './components/Experience';
-import Skills from './components/Skills';
-import Testimonials from './components/Testimonials';
-import Footer from './components/Footer';
-import ChatWidget from './components/ChatWidget';
-
-const App: React.FC = () => {
+function App() {
   return (
-    <div className="bg-brand-dark text-zinc-500 min-h-screen selection:bg-brand-primary selection:text-black font-sans relative">
-      <Navbar />
-      <main className="relative z-10">
-        <Hero />
-        <LogoMarquee />
-        <Impact />
-        <Portfolio />
-        <BeforeAfter />
-        <Services />
-        <Experience />
-        <Skills />
-        <Testimonials />
-      </main>
-      <Footer />
-      <ChatWidget />
+    <div
+      style={{
+        minHeight: "100vh",
+        backgroundColor: "#000000",
+        color: "#ffffff",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+        textAlign: "center",
+        padding: "16px",
+      }}
+    >
+      <h1 style={{ fontSize: "32px", marginBottom: "8px" }}>
+        Beerendra K – 14+ Years Video Editor
+      </h1>
+      <p style={{ fontSize: "18px", opacity: 0.8 }}>
+        Professional video editing for YouTube, Reels, and Ads.
+      </p>
     </div>
   );
-};
+}
 
 export default App;
