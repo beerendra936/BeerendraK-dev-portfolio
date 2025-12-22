@@ -4,7 +4,7 @@ import { Quote } from 'lucide-react';
 
 const Testimonials: React.FC = () => {
   return (
-    <section className="py-40 bg-brand-dark relative overflow-hidden px-6 lg:px-24">
+    <section className="py-24 bg-brand-dark relative overflow-hidden px-6 lg:px-24">
       {/* Decorative Gloom Background */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
 

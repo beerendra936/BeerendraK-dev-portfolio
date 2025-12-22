@@ -4,7 +4,7 @@ import { Youtube, Linkedin, Mail, MessageSquare, MapPin } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
-    <footer id="contact" className="py-24 bg-brand-card px-6 lg:px-24 border-t border-white/5 relative z-10">
+    <footer id="contact" className="py-16 bg-brand-card px-6 lg:px-24 border-t border-white/5 relative z-10">
       <div className="container mx-auto max-w-7xl">
         <div className="mb-20">
           <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter mb-8">Ready to create?</h2>

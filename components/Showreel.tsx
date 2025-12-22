@@ -11,7 +11,7 @@ const Showreel: React.FC = () => {
   const REEL_URL = "https://youtu.be/eWGMXR2WTKA"; 
 
   return (
-    <section id="showreel" className="relative py-24 bg-brand-black overflow-hidden px-6 lg:px-24">
+    <section id="showreel" className="relative py-16 bg-brand-black overflow-hidden px-6 lg:px-24">
       <div className="container mx-auto max-w-7xl">
         <div className="flex flex-col md:flex-row items-end justify-between mb-12 border-b border-white/5 pb-8">
           <div>

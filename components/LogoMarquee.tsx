@@ -6,7 +6,7 @@ const LogoMarquee: React.FC = () => {
   const marqueeItems = [...CLIENTS, ...CLIENTS, ...CLIENTS];
 
   return (
-    <div className="py-24 bg-brand-black border-b border-white/5 overflow-hidden relative z-20">
+    <div className="py-12 bg-brand-black border-b border-white/5 overflow-hidden relative z-20">
       {/* Dark Fade Edge Masks */}
       <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-brand-black to-transparent z-10 pointer-events-none"></div>
       <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-brand-black to-transparent z-10 pointer-events-none"></div>

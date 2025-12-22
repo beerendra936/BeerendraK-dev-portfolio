@@ -26,11 +26,26 @@
             },
             animation: {
               'infinite-scroll': 'infinite-scroll 30s linear infinite',
+              'float-3d': 'float-3d 6s ease-in-out infinite',
+              'spin-slow': 'spin-slow 20s linear infinite',
+              'spin-y': 'spin-y 15s linear infinite',
             },
             keyframes: {
               'infinite-scroll': {
                 from: { transform: 'translateX(0)' },
                 to: { transform: 'translateX(-33.3333%)' },
+              },
+              'float-3d': {
+                '0%, 100%': { transform: 'translateZ(20px) translateY(0px) rotateX(2deg)' },
+                '50%': { transform: 'translateZ(60px) translateY(-20px) rotateX(-2deg)' },
+              },
+              'spin-slow': {
+                'from': { transform: 'rotateX(0deg) rotateY(0deg)' },
+                'to': { transform: 'rotateX(360deg) rotateY(360deg)' }
+              },
+              'spin-y': {
+                'from': { transform: 'rotateY(0deg)' },
+                'to': { transform: 'rotateY(360deg)' }
               }
             },
             transitionTimingFunction: {
@@ -47,6 +62,11 @@
         color: #ffffff;
         -webkit-font-smoothing: antialiased;
         overflow-x: hidden;
+        perspective: 1500px;
+      }
+
+      .preserve-3d {
+        transform-style: preserve-3d;
       }
 
       .grain-overlay {
@@ -58,13 +78,64 @@
         z-index: 9999;
       }
 
-      .hud-grid {
-        position: fixed;
-        inset: 0;
-        background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.03) 1px, transparent 0);
-        background-size: 60px 60px;
-        pointer-events: none;
-        z-index: 1;
+      /* Physical 3D Film Reel */
+      .film-reel-3d {
+        position: relative;
+        width: 180px;
+        height: 180px;
+        transform-style: preserve-3d;
+      }
+      .reel-plate {
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: radial-gradient(circle, transparent 20%, rgba(255,255,255,0.03) 21%, rgba(255,255,255,0.06) 100%);
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+        /* Reel Perforations */
+        background-image: 
+          radial-gradient(circle at 50% 15%, transparent 12%, rgba(0,0,0,0.8) 13%),
+          radial-gradient(circle at 50% 85%, transparent 12%, rgba(0,0,0,0.8) 13%),
+          radial-gradient(circle at 15% 50%, transparent 12%, rgba(0,0,0,0.8) 13%),
+          radial-gradient(circle at 85% 50%, transparent 12%, rgba(0,0,0,0.8) 13%);
+      }
+      .plate-front { transform: translateZ(20px); }
+      .plate-back  { transform: translateZ(-20px); }
+      .reel-hub {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        left: 50%; top: 50%;
+        margin-left: -25px;
+        margin-top: -25px;
+        background: #050505;
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 50%;
+        transform: translateZ(0);
+        transform-style: preserve-3d;
+      }
+
+      .reel-viewport {
+        display: inline-block;
+        height: 1em;
+        line-height: 1em;
+        overflow: hidden;
+        position: relative;
+        vertical-align: bottom;
+      }
+
+      .reel-strip {
+        display: flex;
+        flex-direction: column;
+        will-change: transform;
+      }
+
+      .reel-digit {
+        height: 1em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .cyan-pulse {
@@ -76,16 +147,6 @@
         50% { opacity: 0.8; text-shadow: 0 0 5px rgba(0, 212, 255, 0.2); }
       }
 
-      .bounce-scroll {
-        animation: bounce-scroll 2s infinite;
-      }
-
-      @keyframes bounce-scroll {
-        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-        40% { transform: translateY(-10px); }
-        60% { transform: translateY(-5px); }
-      }
-
       ::-webkit-scrollbar { width: 4px; }
       ::-webkit-scrollbar-track { background: #0a0a0a; }
       ::-webkit-scrollbar-thumb { background: #1a1a1a; }
@@ -93,7 +154,6 @@
       .glass-nav {
         background: rgba(10, 10, 10, 0.7);
         backdrop-filter: blur(8px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       }
 
       .char-reveal span {
@@ -107,25 +167,11 @@
         to { opacity: 1; transform: translateY(0); }
       }
 
-      /* Enhanced Number Reel */
-      .reel-viewport {
-        height: 1.1em;
-        line-height: 1.1em;
-        overflow: hidden;
-        display: inline-block;
-        vertical-align: top;
-      }
-      
-      .reel-strip {
-        display: flex;
-        flex-direction: column;
-        transition: transform 2s cubic-bezier(0.19, 1, 0.22, 1);
+      .glare-effect {
+        background: radial-gradient(circle at var(--x) var(--y), rgba(255,255,255,0.12) 0%, transparent 80%);
       }
 
-      .motion-blur {
-        filter: blur(2px);
-        opacity: 0.7;
-      }
+      .vertical-rl { writing-mode: vertical-rl; }
     </style>
     <script type="importmap">
     {
@@ -142,7 +188,6 @@
   </head>
   <body>
     <div class="grain-overlay"></div>
-    <div class="hud-grid"></div>
     <div id="root"></div>
   </body>
 </html>

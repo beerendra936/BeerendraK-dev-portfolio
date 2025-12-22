@@ -1,20 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 const DigitReel: React.FC<{ digit: string; delay: number }> = ({ digit, delay }) => {
-  const isNumber = !isNaN(parseInt(digit));
-  const [isRolling, setIsRolling] = useState(true);
-  const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const isNumber = !isNaN(parseInt(digit)) && digit !== " ";
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const [hasFinishedRolling, setHasFinishedRolling] = useState(false);
 
   useEffect(() => {
     if (isInView) {
-      const timer = setTimeout(() => setIsRolling(false), 2000 + (delay * 100));
+      const timer = setTimeout(() => setHasFinishedRolling(true), 2500 + (delay * 100));
       return () => clearTimeout(timer);
     }
   }, [isInView, delay]);
 
-  if (!isNumber) return <span className="px-0.5 text-zinc-500 opacity-50">{digit}</span>;
+  if (!isNumber) {
+    return (
+      <span className="inline-block px-0.5 text-zinc-500 opacity-50 align-bottom h-[1em] leading-[1em]">
+        {digit}
+      </span>
+    );
+  }
 
   const finalDigit = parseInt(digit);
 
@@ -25,13 +31,15 @@ const DigitReel: React.FC<{ digit: string; delay: number }> = ({ digit, delay })
         animate={isInView ? { y: `-${finalDigit * 10}%` } : { y: 0 }}
         transition={{ 
           duration: 2.5, 
-          ease: [0.19, 1, 0.22, 1],
+          ease: [0.16, 1, 0.3, 1], // Custom cinematic cubic bezier
           delay: delay * 0.1
         }}
-        className={`reel-strip flex flex-col ${isRolling && isInView ? 'motion-blur' : ''}`}
+        className={`reel-strip ${!hasFinishedRolling && isInView ? 'motion-blur' : ''}`}
       >
         {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
-          <span key={num} className="h-[1.1em] flex items-center justify-center">{num}</span>
+          <span key={num} className="reel-digit">
+            {num}
+          </span>
         ))}
       </motion.span>
     </span>
@@ -40,18 +48,26 @@ const DigitReel: React.FC<{ digit: string; delay: number }> = ({ digit, delay })
 
 const RollingNumber = ({ value, label, prefix = "", suffix = "" }: { value: string, label: string, prefix?: string, suffix?: string }) => {
   return (
-    <div className="text-center p-12 md:p-16 relative group border-white/5">
+    <div className="text-center p-8 md:p-12 relative group border-white/5">
       {/* Top HUD Line */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[1px] bg-brand-cyan/40 group-hover:w-1/2 group-hover:bg-brand-cyan transition-all duration-700"></div>
       
-      <div className="text-6xl md:text-8xl font-black text-brand-cyan mb-6 tracking-tighter flex justify-center items-center select-none">
-        {prefix && <span className="text-3xl mr-2 text-zinc-800 font-mono self-start mt-4">{prefix}</span>}
-        <div className="flex">
+      <div className="text-6xl md:text-8xl font-black text-brand-cyan mb-6 tracking-tighter flex justify-center items-end select-none h-[1.1em] overflow-hidden">
+        {prefix && (
+          <span className="text-2xl mr-2 text-zinc-800 font-mono mb-2">
+            {prefix}
+          </span>
+        )}
+        <div className="flex leading-none">
           {value.split('').map((char, i) => (
             <DigitReel key={i} digit={char} delay={i} />
           ))}
         </div>
-        {suffix && <span className="text-4xl ml-2 text-white/90 font-sans self-end mb-2">{suffix}</span>}
+        {suffix && (
+          <span className="text-3xl ml-2 text-white/90 font-sans mb-2">
+            {suffix}
+          </span>
+        )}
       </div>
       
       <div className="flex flex-col items-center">
@@ -70,7 +86,7 @@ const RollingNumber = ({ value, label, prefix = "", suffix = "" }: { value: stri
 
 const Impact: React.FC = () => {
   return (
-    <section id="stats" className="py-24 bg-brand-black border-y border-white/5 relative z-10 overflow-hidden">
+    <section id="stats" className="py-12 bg-brand-black border-y border-white/5 relative z-10 overflow-hidden">
       {/* Data Labels */}
       <div className="absolute top-6 left-10 font-mono text-[8px] text-zinc-800 uppercase tracking-widest hidden lg:block">
         LOG_TYPE: AUDIENCE_METRICS // STATUS: NOMINAL
