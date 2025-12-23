@@ -124,12 +124,12 @@ const Showreel: React.FC = () => {
           
           <div className="flex items-center justify-end gap-12 border-t border-white/5 md:border-t-0 pt-8 md:pt-0">
              <div className="text-right">
-                <div className="text-brand-cyan text-2xl font-black italic tracking-tighter">500M+</div>
-                <div className="text-zinc-600 font-mono text-[8px] uppercase tracking-widest">Visual Impact</div>
+                <div className="text-brand-cyan text-4xl font-black italic tracking-tighter leading-none">500M+</div>
+                <div className="text-zinc-600 font-mono text-[8px] uppercase tracking-widest mt-2">Visual Impact</div>
              </div>
              <div className="text-right">
-                <div className="text-white text-2xl font-black italic tracking-tighter">14,500+</div>
-                <div className="text-zinc-600 font-mono text-[8px] uppercase tracking-widest">Delivered Edits</div>
+                <div className="text-white text-4xl font-black italic tracking-tighter leading-none">14.5k+</div>
+                <div className="text-zinc-600 font-mono text-[8px] uppercase tracking-widest mt-2">Delivered Edits</div>
              </div>
           </div>
         </div>
